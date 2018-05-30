@@ -9,6 +9,7 @@
 import XCTest
 @testable import Example
 
+
 class ExampleTests: XCTestCase {
     
     override func setUp() {
@@ -17,13 +18,15 @@ class ExampleTests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        // Put teardown code here. This method is called after the invocation of each test method in the class.b
         super.tearDown()
     }
     
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        print(BD_SCREEN_WIDTH)
+        
     }
     
     func testPerformanceExample() {
