@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
+    /// 主要是为了方便在不同bundle里 tableview 或者 collectionview 注册nib
+    ///
+    /// - Returns: UINib 对象
     public class func nib() -> UINib {
         var nibName = NSStringFromClass(self)
         if let temp = nibName.components(separatedBy: ".").last {

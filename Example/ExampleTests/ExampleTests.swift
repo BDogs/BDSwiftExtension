@@ -36,4 +36,10 @@ class ExampleTests: XCTestCase {
         }
     }
     
+    func testUIViewNibInitalization() -> Void {
+        let crv = TestCollectionReusableView.nib()
+        print(crv)
+    }
+    
 }
+
