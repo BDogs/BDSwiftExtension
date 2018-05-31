@@ -28,7 +28,6 @@ extension String {
 //        }
         
         
-        
         if str.responds(to: #selector(NSString.boundingRect(with:options:attributes:context:))) {
             var attr: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: font]
             if lineBreakMode != .byWordWrapping {

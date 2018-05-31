@@ -21,7 +21,6 @@
 		F9AD7B4720BE9E6B00AD302F /* String+TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B2120BE9E6B00AD302F /* String+TextSize.swift */; };
 		F9AD7B4820BE9E6B00AD302F /* String+Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B2220BE9E6B00AD302F /* String+Verification.swift */; };
 		F9AD7B4920BE9E6B00AD302F /* String+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B2320BE9E6B00AD302F /* String+Replace.swift */; };
-		F9AD7B4A20BE9E6B00AD302F /* UINib+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B2620BE9E6B00AD302F /* UINib+Initialization.swift */; };
 		F9AD7B4B20BE9E6B00AD302F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B2820BE9E6B00AD302F /* UILabel+Extension.swift */; };
 		F9AD7B4C20BE9E6B00AD302F /* UIButton+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B2A20BE9E6B00AD302F /* UIButton+Center.swift */; };
 		F9AD7B4D20BE9E6B00AD302F /* UIColor+BDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B2C20BE9E6B00AD302F /* UIColor+BDExtension.swift */; };
@@ -36,6 +35,9 @@
 		F9AD7B5620BE9E6B00AD302F /* UIImage+Modify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B3D20BE9E6B00AD302F /* UIImage+Modify.swift */; };
 		F9AD7B5720BE9E6B00AD302F /* UIImage+Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B3E20BE9E6B00AD302F /* UIImage+Effect.swift */; };
 		F9AD7B5820BE9E6B00AD302F /* UITextField+BDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B4020BE9E6B00AD302F /* UITextField+BDExtension.swift */; };
+		F9AD7B5C20BF9A0B00AD302F /* String+Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B5B20BF9A0B00AD302F /* String+Normal.swift */; };
+		F9AD7B5F20BF9A7400AD302F /* Int+Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B5E20BF9A7400AD302F /* Int+Normal.swift */; };
+		F9AD7B6120BFC56000AD302F /* UIView+NibInitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B6020BFC56000AD302F /* UIView+NibInitalization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +78,6 @@
 		F9AD7B2120BE9E6B00AD302F /* String+TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TextSize.swift"; sourceTree = "<group>"; };
 		F9AD7B2220BE9E6B00AD302F /* String+Verification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Verification.swift"; sourceTree = "<group>"; };
 		F9AD7B2320BE9E6B00AD302F /* String+Replace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Replace.swift"; sourceTree = "<group>"; };
-		F9AD7B2620BE9E6B00AD302F /* UINib+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINib+Initialization.swift"; sourceTree = "<group>"; };
 		F9AD7B2820BE9E6B00AD302F /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		F9AD7B2A20BE9E6B00AD302F /* UIButton+Center.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Center.swift"; sourceTree = "<group>"; };
 		F9AD7B2C20BE9E6B00AD302F /* UIColor+BDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+BDExtension.swift"; sourceTree = "<group>"; };
@@ -91,6 +92,9 @@
 		F9AD7B3D20BE9E6B00AD302F /* UIImage+Modify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Modify.swift"; sourceTree = "<group>"; };
 		F9AD7B3E20BE9E6B00AD302F /* UIImage+Effect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Effect.swift"; sourceTree = "<group>"; };
 		F9AD7B4020BE9E6B00AD302F /* UITextField+BDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+BDExtension.swift"; sourceTree = "<group>"; };
+		F9AD7B5B20BF9A0B00AD302F /* String+Normal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Normal.swift"; sourceTree = "<group>"; };
+		F9AD7B5E20BF9A7400AD302F /* Int+Normal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Normal.swift"; sourceTree = "<group>"; };
+		F9AD7B6020BFC56000AD302F /* UIView+NibInitalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibInitalization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +223,7 @@
 		F9AD7B1F20BE9E6B00AD302F /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				F9AD7B5D20BF9A5600AD302F /* Int */,
 				F9AD7B2020BE9E6B00AD302F /* String */,
 			);
 			path = Swift;
@@ -230,6 +235,7 @@
 				F9AD7B2120BE9E6B00AD302F /* String+TextSize.swift */,
 				F9AD7B2220BE9E6B00AD302F /* String+Verification.swift */,
 				F9AD7B2320BE9E6B00AD302F /* String+Replace.swift */,
+				F9AD7B5B20BF9A0B00AD302F /* String+Normal.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -257,7 +263,6 @@
 		F9AD7B2520BE9E6B00AD302F /* UINib */ = {
 			isa = PBXGroup;
 			children = (
-				F9AD7B2620BE9E6B00AD302F /* UINib+Initialization.swift */,
 			);
 			path = UINib;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 			children = (
 				F9AD7B2E20BE9E6B00AD302F /* UIView+LayoutMethods.swift */,
 				F9AD7B2F20BE9E6B00AD302F /* UIView+SnapShot.swift */,
+				F9AD7B6020BFC56000AD302F /* UIView+NibInitalization.swift */,
 			);
 			path = UIViewExtension;
 			sourceTree = "<group>";
@@ -358,6 +364,14 @@
 				F9AD7B4020BE9E6B00AD302F /* UITextField+BDExtension.swift */,
 			);
 			path = UITextField;
+			sourceTree = "<group>";
+		};
+		F9AD7B5D20BF9A5600AD302F /* Int */ = {
+			isa = PBXGroup;
+			children = (
+				F9AD7B5E20BF9A7400AD302F /* Int+Normal.swift */,
+			);
+			path = Int;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,9 +515,9 @@
 				F9AD7B4B20BE9E6B00AD302F /* UILabel+Extension.swift in Sources */,
 				F9AD7B5520BE9E6B00AD302F /* UITableView+Extension.swift in Sources */,
 				F9AD7B4620BE9E6B00AD302F /* Date+BDExtension.swift in Sources */,
+				F9AD7B5C20BF9A0B00AD302F /* String+Normal.swift in Sources */,
 				F9AD7B4F20BE9E6B00AD302F /* UIView+SnapShot.swift in Sources */,
 				F9AD7B5020BE9E6B00AD302F /* CGSize+BDExtension.swift in Sources */,
-				F9AD7B4A20BE9E6B00AD302F /* UINib+Initialization.swift in Sources */,
 				F9AD7B4520BE9E6B00AD302F /* DigitalTranslator.swift in Sources */,
 				F9AD7B5620BE9E6B00AD302F /* UIImage+Modify.swift in Sources */,
 				F9AD7B5220BE9E6B00AD302F /* UITextView+BDExtension.swift in Sources */,
@@ -513,7 +527,9 @@
 				F9AD7B4720BE9E6B00AD302F /* String+TextSize.swift in Sources */,
 				F9AD7B4920BE9E6B00AD302F /* String+Replace.swift in Sources */,
 				F9AD7B4820BE9E6B00AD302F /* String+Verification.swift in Sources */,
+				F9AD7B6120BFC56000AD302F /* UIView+NibInitalization.swift in Sources */,
 				F9AD7B5720BE9E6B00AD302F /* UIImage+Effect.swift in Sources */,
+				F9AD7B5F20BF9A7400AD302F /* Int+Normal.swift in Sources */,
 				F9AD7AE120BE815A00AD302F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
