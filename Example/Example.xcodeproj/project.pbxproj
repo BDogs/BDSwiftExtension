@@ -40,6 +40,7 @@
 		F9AD7B6120BFC56000AD302F /* UIView+NibInitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B6020BFC56000AD302F /* UIView+NibInitalization.swift */; };
 		F9AD7B6520BFC64E00AD302F /* TestCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7B6320BFC64E00AD302F /* TestCollectionReusableView.swift */; };
 		F9AD7B6620BFC64E00AD302F /* TestCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AD7B6420BFC64E00AD302F /* TestCollectionReusableView.xib */; };
+		F9E11A8820C5166E007803F6 /* StringExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E11A8720C5166E007803F6 /* StringExtensionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		F9AD7B6020BFC56000AD302F /* UIView+NibInitalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibInitalization.swift"; sourceTree = "<group>"; };
 		F9AD7B6320BFC64E00AD302F /* TestCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionReusableView.swift; sourceTree = "<group>"; };
 		F9AD7B6420BFC64E00AD302F /* TestCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestCollectionReusableView.xib; sourceTree = "<group>"; };
+		F9E11A8720C5166E007803F6 /* StringExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			children = (
 				F9AD7B6220BFC60500AD302F /* View */,
 				F9AD7AF520BE815B00AD302F /* ExampleTests.swift */,
+				F9E11A8720C5166E007803F6 /* StringExtensionTest.swift */,
 				F9AD7AF720BE815B00AD302F /* Info.plist */,
 			);
 			path = ExampleTests;
@@ -554,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9AD7B6520BFC64E00AD302F /* TestCollectionReusableView.swift in Sources */,
+				F9E11A8820C5166E007803F6 /* StringExtensionTest.swift in Sources */,
 				F9AD7AF620BE815B00AD302F /* ExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

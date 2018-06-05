@@ -6,8 +6,13 @@
 //  Copyright © 2017年 品驰医疗. All rights reserved.
 //
 
+#if canImport(Foundation)
 import Foundation
+#endif
+
+#if canImport(UIKit)
 import UIKit
+#endif
 
 
 extension UITextField {

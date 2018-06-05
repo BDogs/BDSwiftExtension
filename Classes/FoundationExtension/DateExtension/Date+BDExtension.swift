@@ -42,7 +42,7 @@ public extension Date {
      
      @return NSString representing the formatted date string.
      */
-    public func string(format: String, currentCalender: Calendar = Calendar.current) -> String {
+    public func string(format: String = "yyyy-MM-dd HH:mm:ss", currentCalender: Calendar = Calendar.current) -> String {
         let formatter = DateFormatter()
         formatter.calendar = currentCalender
         formatter.dateFormat = format
@@ -51,7 +51,7 @@ public extension Date {
     
     
     
-    public static func dateWithString(string: String?, format: String) -> Date? {
+    public static func dateWithString(string: String?, format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
         guard let dateString = string else { return nil }
         let formatter = DateFormatter()
         formatter.dateFormat = format
