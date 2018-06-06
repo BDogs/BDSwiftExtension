@@ -19,7 +19,7 @@ public protocol PLLSControllerKeyboardProtocol {
     func addObserverForKeyboardWillChangeFrame(observer: PLLSControllerKeyboardProtocol) -> Void
     func removeObserverForKeyboardWillChangeFrame(observer: PLLSControllerKeyboardProtocol) -> Void
     //    func didReceiveNotificationOfKeyboardWillChangeFrame(notify: Notification) -> Void
-    func willShowKeyboard(from beginFrame: CGRect, to endFrame: CGRect, duration: TimeInterval, status: KeyboardStatus, bottom: CGFloat, options: UIViewAnimationOptions, responder: UIView?) -> Void
+    func willShowKeyboard(from beginFrame: CGRect, to endFrame: CGRect, duration: TimeInterval, status: KeyboardStatus, bottom: CGFloat, options: UIView.AnimationOptions, responder: UIView?) -> Void
 }
 
 extension UIViewController {
@@ -46,11 +46,11 @@ extension UIViewController {
     
     public func addObserverForKeyboardWillChangeFrame(observer: PLLSControllerKeyboardProtocol) -> Void {
         let sel = #selector(didReceiveNotificationOfKeyboardWillChangeFrame(notify:))
-        NotificationCenter.default.addObserver(observer, selector: sel, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(observer, selector: sel, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
-        NotificationCenter.default.addObserver(observer, selector: #selector(self.textFieldDidBeginEditing(notify:)), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
+        NotificationCenter.default.addObserver(observer, selector: #selector(self.textFieldDidBeginEditing(notify:)), name: UITextField.textDidBeginEditingNotification, object: nil)
         
-        NotificationCenter.default.addObserver(observer, selector: #selector(textViewDidBeginEditing(notify:)), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+        NotificationCenter.default.addObserver(observer, selector: #selector(textViewDidBeginEditing(notify:)), name: UITextView.textDidBeginEditingNotification, object: nil)
         
         
         
@@ -61,9 +61,9 @@ extension UIViewController {
     
     public func removeObserverForKeyboardWillChangeFrame(observer: PLLSControllerKeyboardProtocol) -> Void {
         
-        NotificationCenter.default.removeObserver(observer, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.removeObserver(observer, name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
-        NotificationCenter.default.removeObserver(observer, name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+        NotificationCenter.default.removeObserver(observer, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(observer, name: UITextField.textDidBeginEditingNotification, object: nil)
+        NotificationCenter.default.removeObserver(observer, name: UITextView.textDidBeginEditingNotification, object: nil)
         NotificationCenter.default.removeObserver(observer)
     }
     
@@ -78,11 +78,11 @@ extension UIViewController {
     @objc func didReceiveNotificationOfKeyboardWillChangeFrame(notify: Notification) -> Void {
         let responder = inputFirstResponder
         guard let userInfo = notify.userInfo else { return }
-        guard let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
-        guard let beginFrame = userInfo[UIKeyboardFrameBeginUserInfoKey] as? CGRect else { return }
-        guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+        guard let endFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        guard let beginFrame = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect else { return }
+        guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
         
-        guard let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? Int else { return }
+        guard let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else { return }
         
         var status: KeyboardStatus = .closed
         var bottom: CGFloat = 0
@@ -103,7 +103,7 @@ extension UIViewController {
         }
         
         if let controller = self as? PLLSControllerKeyboardProtocol {
-            controller.willShowKeyboard(from: beginFrame, to: endFrame, duration: duration, status: status, bottom: bottom, options: [UIViewAnimationOptions(rawValue: UInt(curve<<16)), .beginFromCurrentState], responder: responder)
+            controller.willShowKeyboard(from: beginFrame, to: endFrame, duration: duration, status: status, bottom: bottom, options: [UIView.AnimationOptions(rawValue: UInt(curve<<16)), UIView.AnimationOptions.beginFromCurrentState], responder: responder)
         }
         
     }

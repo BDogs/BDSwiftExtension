@@ -30,4 +30,40 @@ class StringExtensionTest: XCTestCase {
         XCTAssert(temp[1..<3] == "el")
     }
     
+    func testCommonSuffix() -> Void {
+        let temp = "hello boy!"
+        let result1 = temp.commonSuffix(with: "good boy!")
+        let result2 = temp.commonSuffix(with: "boy")
+        
+        XCTAssert(result1 == " boy!")
+        XCTAssert(result2.isEmpty)
+    }
+    
+    func testBase64() -> Void {
+        let temp = "Hello World!"
+        let encoded = temp.base64
+        XCTAssertNotNil(encoded, "")
+        XCTAssert(encoded == "SGVsbG8gV29ybGQh")
+        let decocded = String(base64: encoded!)
+        XCTAssertNotNil(decocded, "")
+        XCTAssert(decocded == temp)
+    }
+    
+    func testVar_Number() -> Void {
+        let s1 = "12"
+        let s2 = "12.34"
+        let s3 = "-0xFF"
+        let s4 = ".23e99"
+
+        print(s1.number ?? 0)
+        print(s2.number ?? 0)
+        print(s3.number ?? 0)
+        print(s4.number ?? 0)
+        
+        print(s1.number?.intValue ?? 0)
+        print(s2.number?.intValue ?? 0)
+        print(s3.number?.intValue ?? 0)
+        print(s4.number?.intValue ?? 0)
+    }
+    
 }

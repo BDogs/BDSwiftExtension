@@ -29,11 +29,11 @@ extension String {
         
         
         if str.responds(to: #selector(NSString.boundingRect(with:options:attributes:context:))) {
-            var attr: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: font]
+            var attr: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font]
             if lineBreakMode != .byWordWrapping {
                 let style = NSMutableParagraphStyle()
                 style.lineBreakMode = lineBreakMode
-                attr[NSAttributedStringKey.paragraphStyle] = style
+                attr[NSAttributedString.Key.paragraphStyle] = style
             }
 
             let rect =  str.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: attr, context: nil)

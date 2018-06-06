@@ -16,6 +16,34 @@ extension String {
         return Int(self)
     }
     
+    /// eg: "12" "12.34" "-0xFF" ".23e99"
+    public var  number: NSNumber? {
+        let temp = stringByRemovedWhitespacesAndNewlines()
+        guard !temp.isEmpty else {
+            return nil
+        }
+        var sign = 0
+        if temp.hasPrefix("0x") {
+            sign = 1
+        } else if temp.hasPrefix("-0x") {
+            sign = -1
+        }
+        
+        if sign != 0 {
+            // hex number
+            let scan = Scanner(string: temp)
+            let result = UnsafeMutablePointer<Double>.allocate(capacity: 8)
+            let suc = scan.scanHexDouble(result)
+            if suc {
+                return NSNumber(value: result.pointee)
+            } else { return nil }
+        } else {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            return formatter.number(from: temp)
+        }
+    }
+    
     public var intValueWithoutWhitespacesAndNewlines: Int? {
         let temp = self.stringByRemovedWhitespacesAndNewlines()
         return Int(temp)
@@ -73,6 +101,27 @@ extension String {
         return nil
     }
     
+    /// Create a new random string of given length.
+    ///
+    ///        String(randomOfLength: 10) -> "gY8r3MHvlQ"
+    ///
+    /// - Parameter length: number of characters in string.
+    public init(randomOfLength length: Int) {
+        guard length > 0 else {
+            self.init()
+            return
+        }
+        
+        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var randomString = ""
+        for _ in 1...length {
+            let randomIndex = arc4random_uniform(UInt32(base.count))
+            guard let randomCharacter = base[Int(randomIndex)] else { continue }
+            randomString.append(randomCharacter)
+        }
+        self.init(randomString)
+    }
+    
     public var url: URL? {
         return URL(string: self)
     }
@@ -119,14 +168,30 @@ extension String {
         }
         return range(of: string) != nil
     }
-
-    // MARK: - transform
     
+    // MARK: - transform
+    /// 字符串倒序
+    public func reverseString() -> String {
+        return String(reversed())
+    }
+    
+    /// 获取两个字符串公共的后缀
+    ///
+    /// - Parameters:
+    ///   - aString:
+    ///   - options:
+    /// - Returns: 如果有公共后缀则返回 如果没有返回空字符串
+    public func commonSuffix(with aString: String, options: String.CompareOptions = []) -> String {
+        let reversedSuffix = reverseString().commonPrefix(with: aString.reverseString(), options: options)
+        
+        return reversedSuffix.reverseString()
+    }
+
     /// 去掉字符串中空格
     /// eg：" 2 123 \n" -> "2123"
     public func stringByRemovedWhitespacesAndNewlines() -> String {
         var temp = self.components(separatedBy: .whitespacesAndNewlines)
-        temp = temp.filter{ $0 != "" }
+        temp = temp.filter { $0 != "" }
         return temp.joined()
     }
     
@@ -134,7 +199,7 @@ extension String {
     /// 字符串限制长度，多余截掉
     ///
     /// - Parameter limit: 长度
-    /// - Returns: 
+    /// - Returns:
     public func stringByLimited(limit: Int) -> String {
         guard count < limit else {
             return self
@@ -144,11 +209,10 @@ extension String {
     
     /// Count of words in a string.
     ///
-    ///        "Swift is amazing".wordsCount() -> 3
+    /// eg: "Swift is amazing".wordsCount() -> 3
     ///
     /// - Returns: The count of words contained in a string.
     public func wordCount() -> Int {
-        // https://stackoverflow.com/questions/42822838
         let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
         let comps = components(separatedBy: chararacterSet)
         let words = comps.filter { !$0.isEmpty }
@@ -193,11 +257,6 @@ extension String {
         guard let upperIndex = index(lowerIndex, offsetBy: range.upperBound - range.lowerBound + 1, limitedBy: endIndex) else { return nil }
         
         return String(self[lowerIndex..<upperIndex])
-    }
-    
-    /// 字符串倒序
-    public func reverseString() -> String {
-        return String(reversed())
     }
     
     /// Date object from string of date format.
@@ -245,15 +304,13 @@ extension String {
 
 }
 
-
-// MARK: - Initializers
+// MARK: - encode and decode
 public extension String {
     
-    #if canImport(Foundation)
     /// Create a new string from a base64 string (if applicable).
     ///
-    ///        String(base64: "SGVsbG8gV29ybGQh") = "Hello World!"
-    ///        String(base64: "hello") = nil
+    /// eg: String(base64: "SGVsbG8gV29ybGQh") = "Hello World!"
+    /// eg: String(base64: "hello") = nil
     ///
     /// - Parameter base64: base64 string.
     public init?(base64: String) {
@@ -261,28 +318,29 @@ public extension String {
         guard let str = String(data: decodedData, encoding: .utf8) else { return nil }
         self.init(str)
     }
-    #endif
     
-    /// Create a new random string of given length.
-    ///
-    ///        String(randomOfLength: 10) -> "gY8r3MHvlQ"
-    ///
-    /// - Parameter length: number of characters in string.
-    public init(randomOfLength length: Int) {
-        guard length > 0 else {
-            self.init()
-            return
-        }
-        
-        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        var randomString = ""
-        for _ in 1...length {
-            let randomIndex = arc4random_uniform(UInt32(base.count))
-            guard let randomCharacter = base[Int(randomIndex)] else { continue }
-            randomString.append(randomCharacter)
-        }
-        self.init(randomString)
+    /// base64 字符串
+    /// eg: "Hello World!".base64 = "SGVsbG8gV29ybGQh"
+    public var base64: String? {
+        guard let orignalData = data(using: .utf8) else { return nil }
+        let encodedData = orignalData.base64EncodedData(options: [])
+        return String(data: encodedData, encoding: .utf8)
     }
+    
+    /// Readable string from a URL string.
+    ///
+    /// eg: "it's%20easy%20to%20decode%20strings".urlDecoded -> "it's easy to decode strings"
+    public var urlDecoded: String {
+        return removingPercentEncoding ?? self
+    }
+    
+    /// SwifterSwift: URL escaped string.
+    ///
+    /// eg: "it's easy to encode strings".urlEncoded -> "it's%20easy%20to%20encode%20strings"
+    public var urlEncoded: String {
+        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+    }
+
     
 }
 
@@ -300,28 +358,28 @@ public extension String {
     #if os(iOS) || os(macOS)
     /// Bold string.
     public var bold: NSAttributedString {
-        return NSMutableAttributedString(string: self, attributes: [.font: Font.boldSystemFont(ofSize: Font.systemFontSize)])
+        return NSMutableAttributedString(string: self, attributes: [NSAttributedString.Key.font: Font.boldSystemFont(ofSize: Font.systemFontSize)])
     }
     #endif
     
     #if canImport(Foundation)
     /// Underlined string
     public var underline: NSAttributedString {
-        return NSAttributedString(string: self, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue])
+        return NSAttributedString(string: self, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     }
     #endif
     
     #if canImport(Foundation)
     /// Strikethrough string.
     public var strikethrough: NSAttributedString {
-        return NSAttributedString(string: self, attributes: [.strikethroughStyle: NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)])
+        return NSAttributedString(string: self, attributes: [NSAttributedString.Key.strikethroughStyle: NSNumber(value: NSUnderlineStyle.single.rawValue as Int)])
     }
     #endif
     
     #if os(iOS)
     /// Italic string.
     public var italic: NSAttributedString {
-        return NSMutableAttributedString(string: self, attributes: [.font: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
+        return NSMutableAttributedString(string: self, attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
     }
     #endif
     
@@ -331,7 +389,7 @@ public extension String {
     /// - Parameter color: text color.
     /// - Returns: a NSAttributedString versions of string colored with given color.
     public func colored(with color: UIColor) -> NSAttributedString {
-        return NSMutableAttributedString(string: self, attributes: [.foregroundColor: color])
+        return NSMutableAttributedString(string: self, attributes: [NSAttributedString.Key.foregroundColor: color])
     }
     #endif
     
@@ -363,5 +421,6 @@ public extension String {
         return String(repeating: lhs, count: rhs)
     }
 }
+
 
 

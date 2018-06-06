@@ -37,10 +37,12 @@ class ExampleTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         print(BD_SCREEN_WIDTH)
-        
+
         print("12 2".trimmingCharacters(in: .whitespacesAndNewlines))
-        print("12 3 ha 哈哈 👌".count)
+
         print("12 3 ha 哈哈 👌".lengthOfBytes(using: .utf8))
+        print("12 3 ha 哈哈 👌".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")
+        print(URL(string: "12 3 ha 哈👌".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) ?? "")
         
         
     }

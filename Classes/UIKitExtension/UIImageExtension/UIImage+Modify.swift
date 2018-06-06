@@ -35,7 +35,7 @@ extension UIImage {
     ///   - contentMode: Draw content mode.
     ///   - clipsToBounds: A Boolean value that determines whether content are confined to the rect.
     
-    public func bd_drawInRect(rect: CGRect, contentMode: UIViewContentMode, clipsToBounds: Bool) -> Void {
+    public func bd_drawInRect(rect: CGRect, contentMode: UIView.ContentMode, clipsToBounds: Bool) -> Void {
         let drawRect = bd_CGRectFitWithContentMode(rect: rect, size: self.size, mode: contentMode)
         guard drawRect.width == 0 || drawRect.height == 0 else {
             return
@@ -64,7 +64,7 @@ extension UIImage {
     ///   - mode: The content mode
     /// - Returns: A resized rect for the given content mode.
     /// - Discussions: UIViewContentModeRedraw is same as UIViewContentModeScaleToFill.
-    public func bd_CGRectFitWithContentMode(rect: CGRect, size: CGSize, mode: UIViewContentMode) -> CGRect {
+    public func bd_CGRectFitWithContentMode(rect: CGRect, size: CGSize, mode: UIView.ContentMode) -> CGRect {
         var contentRect = rect.standardized
         let originalSize = size.standardized()
         let centerP = CGPoint(x: contentRect.midX, y: contentRect.midY)
@@ -162,7 +162,7 @@ extension UIImage {
     ///   - size: The new size to be scaled, values should be positive.
     ///   - contentMode: The content mode for image content.
     /// - Returns: The new image with the given size.
-    public func bd_imageByResize(toSize size: CGSize, contentMode: UIViewContentMode) -> UIImage? {
+    public func bd_imageByResize(toSize size: CGSize, contentMode: UIView.ContentMode) -> UIImage? {
         guard size.isStandardized() else {
             return nil
         }
@@ -206,8 +206,8 @@ extension UIImage {
         }
     
         let outerRect = CGRect(origin: CGPoint.zero, size: imageSize)
-        let innerInsets = UIEdgeInsetsMake(abs(insets.top), abs(insets.left), abs(insets.bottom), abs(insets.right))
-        let innerRect = UIEdgeInsetsInsetRect(outerRect, innerInsets)
+        let innerInsets = UIEdgeInsets.init(top: abs(insets.top), left: abs(insets.left), bottom: abs(insets.bottom), right: abs(insets.right))
+        let innerRect = outerRect.inset(by: innerInsets)
         // 画布大小决定 image 的大小
         UIGraphicsBeginImageContextWithOptions(imageSize, false, self.scale)
         let context = UIGraphicsGetCurrentContext()

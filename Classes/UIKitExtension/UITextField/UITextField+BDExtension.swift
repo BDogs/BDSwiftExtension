@@ -29,7 +29,7 @@ extension UITextField {
         set {
             guard let key = UITextField.BDTextFieldLimitKey else { return }
             objc_setAssociatedObject(self, key, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-              NotificationCenter.default.addObserver(self, selector: #selector(bd_recieveDidChangeNotification(notif:)), name: Notification.Name.UITextFieldTextDidChange, object: nil)
+              NotificationCenter.default.addObserver(self, selector: #selector(bd_recieveDidChangeNotification(notif:)), name: UITextField.textDidChangeNotification, object: nil)
         }
     }
     

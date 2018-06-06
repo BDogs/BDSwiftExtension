@@ -459,13 +459,16 @@
 				TargetAttributes = {
 					F9AD7ADC20BE815A00AD302F = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1000;
 					};
 					F9AD7AF020BE815B00AD302F = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = F9AD7ADC20BE815A00AD302F;
 					};
 					F9AD7AFB20BE815B00AD302F = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = F9AD7ADC20BE815A00AD302F;
 					};
 				};
@@ -731,7 +734,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinsmedical.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -748,7 +751,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinsmedical.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -767,7 +770,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinsmedical.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 			};
@@ -787,7 +790,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinsmedical.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 			};
@@ -806,7 +809,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinsmedical.ExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Example;
 			};
@@ -825,7 +828,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinsmedical.ExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Example;
 			};

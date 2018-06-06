@@ -75,13 +75,15 @@ extension String {
         var sum: Int = 0
         
         for i in 0..<17 {
-            let stringValue = self.substring(with: (self.index(self.startIndex, offsetBy: i)..<self.index(self.startIndex, offsetBy: i+1)))
-            let intValue = Int(stringValue) ?? 0
+            let stringValue = self[i]
+            //self.substring(with: (self.index(self.startIndex, offsetBy: i)..<self.index(self.startIndex, offsetBy: i+1)))
+            let intValue = stringValue?.int ?? 0
             sum += intValue*weight[i]
         }
         
         let mode = sum%11
-        let origalCode = self.substring(with: (self.index(self.startIndex, offsetBy: 17)..<self.index(self.startIndex, offsetBy: 18))).lowercased()
+        let origalCode = self[17]
+            //self.substring(with: (self.index(self.startIndex, offsetBy: 17)..<self.index(self.startIndex, offsetBy: 18))).lowercased()
         let validateCode = validates[mode].lowercased()
         if origalCode == validateCode {
             return true

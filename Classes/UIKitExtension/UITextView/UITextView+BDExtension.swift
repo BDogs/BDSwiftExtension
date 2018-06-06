@@ -26,9 +26,9 @@ extension UITextView {
             guard let key = UITextView.BDTextViewPlaceholderKey else { return }
             objc_setAssociatedObject(self, key, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
             
-            NotificationCenter.default.addObserver(self, selector: #selector(bd_receiveDidBeginEditingNotification(notif:)), name: Notification.Name.UITextViewTextDidBeginEditing, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(bd_recieveDidChangeNotification(notif:)), name: Notification.Name.UITextViewTextDidChange, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(bd_receiveDidEndEditingNotification(notif:)), name: Notification.Name.UITextViewTextDidEndEditing, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(bd_receiveDidBeginEditingNotification(notif:)), name: UITextView.textDidBeginEditingNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(bd_recieveDidChangeNotification(notif:)), name: UITextView.textDidChangeNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(bd_receiveDidEndEditingNotification(notif:)), name: UITextView.textDidEndEditingNotification, object: nil)
             
             self.addSubview(placeholderLabel)
             self.insertSubview(placeholderLabel, at: 1)
