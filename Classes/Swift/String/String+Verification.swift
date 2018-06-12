@@ -21,14 +21,133 @@ extension String {
     }
     
     public func hasBlankCharacter() -> Bool {
-        let temp = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        return temp != self
+        return components(separatedBy: .whitespacesAndNewlines).count != 1
     }
+    
+    public var isWhitespace: Bool {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    /// Check if string contains one or more emojis.
+    /// eg: "Hello 😀".containEmoji -> true
+    public var containEmoji: Bool {
+        // unicodeScalars: Unicode标量值的集合
+        for scalar in unicodeScalars {
+            switch scalar.value {
+            case 0x3030, 0x00AE, 0x00A9, // Special Characters
+            0x1D000...0x1F77F, // Emoticons
+            0x2100...0x27BF, // Misc symbols and Dingbats
+            0xFE00...0xFE0F, // Variation Selectors
+            0x1F900...0x1F9FF: // Supplemental Symbols and Pictographs
+                return true
+            default:
+                continue
+            }
+        }
+        return false
+    }
+    
+    /// Check if string contains one or more instance of substring.
+    ///
+    ///        "Hello World!".contain("O") -> false
+    ///        "Hello World!".contain("o", caseSensitive: false) -> true
+    ///
+    /// - Parameters:
+    ///   - string: substring to search for.
+    ///   - caseSensitive: set true for case sensitive search (default is true).
+    /// - Returns: true if string contains one or more instance of substring.
+    public func contains(_ string: String, caseSensitive: Bool = true) -> Bool {
+        if !caseSensitive {
+            return range(of: string, options: .caseInsensitive) != nil
+        }
+        return range(of: string) != nil
+    }
+
     
     public func isUnderLengthMaxLimit(limit: Int) -> Bool {
         return count <= limit
     }
     
+    /// Verify if string matches the regex pattern.
+    ///
+    /// - Parameter pattern: Pattern to verify.
+    /// - Returns: true if string matches the pattern.
+    public func matches(pattern: String) -> Bool {
+        return range(of: pattern, options: .regularExpression, range: nil, locale: nil) != nil
+    }
+    
+    /// Check if string contains one or more letters.
+    ///
+    ///        "123abc".hasLetters -> true
+    ///        "123".hasLetters -> false
+    ///
+    public var hasLetters: Bool {
+        // options 似乎用 .literal 也是可以的
+        // 从左向右找到第一个字母字符时返回 range，若未找到返回 nil
+        return rangeOfCharacter(from: .letters, options: .numeric, range: nil) != nil
+    }
+    
+    /// Check if string contains one or more numbers.
+    ///
+    ///        "abcd".hasNumbers -> false
+    ///        "123abc".hasNumbers -> true
+    ///
+    public var hasNumbers: Bool {
+        return rangeOfCharacter(from: .decimalDigits, options: .literal, range: nil) != nil
+    }
+    
+    
+    /// 字母和数字混合
+    ///        "abcd".hasNumbers -> false
+    ///        "123abc".hasNumbers -> true
+    public var isAlphanumerics: Bool {
+        let comps = components(separatedBy: .alphanumerics)
+        return comps.joined(separator: "").count == 0 && hasLetters && hasNumbers
+    }
+    
+    public var isOnlyNumbers: Bool {
+        return hasNumbers && !hasLetters
+    }
+    
+    public var isOnlyLetters: Bool {
+        return hasLetters && !hasNumbers
+    }
+    
+    public var isEmail: Bool {
+        return matches(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
+    }
+
+    /// Check if string is a valid Swift number.
+    ///
+    /// Note:
+    /// In North America, "." is the decimal separator,
+    /// while in many parts of Europe "," is used,
+    ///
+    ///        "123".isNumeric -> true
+    ///     "1.3".isNumeric -> true (en_US)
+    ///     "1,3".isNumeric -> true (fr_FR)
+    ///        "abc".isNumeric -> false
+    ///
+    public var isNumeric: Bool {
+        let scanner = Scanner(string: self)
+        scanner.locale = NSLocale.current
+        return scanner.scanDecimal(nil) && scanner.isAtEnd
+    }
+    
+    /// Check if string only contains digits.
+    ///
+    ///     "123".isDigits -> true
+    ///     "1.3".isDigits -> false
+    ///     "abc".isDigits -> false
+    ///
+    public var isDigits: Bool {
+        return CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: self))
+    }
+
+    /// x 位数字的字符串
+    ///
+    /// - Parameter limt:
+    /// - Returns: bool
     public func isNumbers(limt: Int) -> Bool {
         guard self.lengthOfBytes(using: .utf8) == limt else {
             return false
@@ -47,6 +166,13 @@ extension String {
         return regExPredicate.evaluate(with:self)
     }
     
+    
+    /// [min...max] 位中文字符串
+    ///
+    /// - Parameters:
+    ///   - min:
+    ///   - max:
+    /// - Returns: bool
     public func isStringWithChinese(min: Int, max: Int) -> Bool {
         guard max > min  else {
             return false

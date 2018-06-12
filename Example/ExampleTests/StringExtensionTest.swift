@@ -11,7 +11,6 @@ import XCTest
 @testable import Example
 
 class StringExtensionTest: XCTestCase {
-
     
     func testStringByRemovedWhitespacesAndNewlines() -> Void {
         var str = " 2 123 \n"
@@ -66,4 +65,33 @@ class StringExtensionTest: XCTestCase {
         print(s4.number?.intValue ?? 0)
     }
     
+    func testMatches() -> Void {
+        let tel = "18842310610"
+        XCTAssert(tel.matches(pattern: "^[1][0-9]{10}$"))
+    }
+    
+    func testHasLetters() -> Void {
+        let temp = "123abcd"
+        XCTAssert(temp.hasLetters)
+        XCTAssertFalse("123".hasLetters)
+        XCTAssertNotNil(temp.rangeOfCharacter(from: .letters, options: .literal, range: nil))
+    }
+    
+    func testhasNumbers() -> Void {
+        XCTAssert("abcd123".hasNumbers)
+        XCTAssertFalse("abcd".hasNumbers)
+        XCTAssertNotNil("abcd123".rangeOfCharacter(from: .decimalDigits, options: .numeric, range: nil))
+    }
+    
+    func testisAlphanumerics() -> Void {
+        XCTAssert("abc123".isAlphanumerics)
+        XCTAssertFalse("abc".isAlphanumerics)
+        XCTAssertFalse("124".isAlphanumerics)
+    }
+    
+    func testisEmail() -> Void {
+        XCTAssert("1215852067@qq.com".isEmail)
+        XCTAssert("12158@qq.com".isEmail)
+        XCTAssertFalse("1215852067@qq.c".isEmail)
+    }
 }

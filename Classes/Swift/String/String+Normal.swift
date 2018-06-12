@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 extension String {
-    
     /// 要不要去掉空白字符呢
     public var int: Int? {
         return Int(self)
@@ -129,46 +128,7 @@ extension String {
     public var fileUrl: URL {
         return URL(fileURLWithPath: self)
     }
-    
-    public var isWhitespace: Bool {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
-    
-    /// Check if string contains one or more emojis.
-    /// eg: "Hello 😀".containEmoji -> true
-    public var containEmoji: Bool {
-        // unicodeScalars: Unicode标量值的集合
-        for scalar in unicodeScalars {
-            switch scalar.value {
-            case 0x3030, 0x00AE, 0x00A9, // Special Characters
-            0x1D000...0x1F77F, // Emoticons
-            0x2100...0x27BF, // Misc symbols and Dingbats
-            0xFE00...0xFE0F, // Variation Selectors
-            0x1F900...0x1F9FF: // Supplemental Symbols and Pictographs
-                return true
-            default:
-                continue
-            }
-        }
-        return false
-    }
-    
-    /// Check if string contains one or more instance of substring.
-    ///
-    ///        "Hello World!".contain("O") -> false
-    ///        "Hello World!".contain("o", caseSensitive: false) -> true
-    ///
-    /// - Parameters:
-    ///   - string: substring to search for.
-    ///   - caseSensitive: set true for case sensitive search (default is true).
-    /// - Returns: true if string contains one or more instance of substring.
-    public func contains(_ string: String, caseSensitive: Bool = true) -> Bool {
-        if !caseSensitive {
-            return range(of: string, options: .caseInsensitive) != nil
-        }
-        return range(of: string) != nil
-    }
-    
+        
     // MARK: - transform
     /// 字符串倒序
     public func reverseString() -> String {
@@ -194,7 +154,6 @@ extension String {
         temp = temp.filter { $0 != "" }
         return temp.joined()
     }
-    
     
     /// 字符串限制长度，多余截掉
     ///
@@ -272,13 +231,6 @@ extension String {
         return dateFormatter.date(from: self)
     }
 
-    /// Verify if string matches the regex pattern.
-    ///
-    /// - Parameter pattern: Pattern to verify.
-    /// - Returns: true if string matches the pattern.
-    public func matches(pattern: String) -> Bool {
-        return range(of: pattern, options: .regularExpression, range: nil, locale: nil) != nil
-    }
     
     /// Returns a localized string, with an optional comment for translators.
     ///
