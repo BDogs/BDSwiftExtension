@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F93374D1213D161D002A8CAE /* String+Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93374D0213D161D002A8CAE /* String+Coding.swift */; };
+		F93374D4213E7660002A8CAE /* Float+Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93374D3213E7660002A8CAE /* Float+Normal.swift */; };
 		F9AD7AE120BE815A00AD302F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7AE020BE815A00AD302F /* AppDelegate.swift */; };
 		F9AD7AE320BE815A00AD302F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7AE220BE815A00AD302F /* ViewController.swift */; };
 		F9AD7AE620BE815A00AD302F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9AD7AE420BE815A00AD302F /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		F93374D0213D161D002A8CAE /* String+Coding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Coding.swift"; sourceTree = "<group>"; };
+		F93374D3213E7660002A8CAE /* Float+Normal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Normal.swift"; sourceTree = "<group>"; };
 		F9AD7ADD20BE815A00AD302F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9AD7AE020BE815A00AD302F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9AD7AE220BE815A00AD302F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F93374D2213E763E002A8CAE /* Float */ = {
+			isa = PBXGroup;
+			children = (
+				F93374D3213E7660002A8CAE /* Float+Normal.swift */,
+			);
+			path = Float;
+			sourceTree = "<group>";
+		};
 		F9AD7AD420BE815A00AD302F = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +245,7 @@
 		F9AD7B1F20BE9E6B00AD302F /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				F93374D2213E763E002A8CAE /* Float */,
 				F9AD7B5D20BF9A5600AD302F /* Int */,
 				F9AD7B2020BE9E6B00AD302F /* String */,
 			);
@@ -557,6 +568,7 @@
 				F9AD7B6120BFC56000AD302F /* UIView+NibInitalization.swift in Sources */,
 				F9AD7B5720BE9E6B00AD302F /* UIImage+Effect.swift in Sources */,
 				F9AD7B5F20BF9A7400AD302F /* Int+Normal.swift in Sources */,
+				F93374D4213E7660002A8CAE /* Float+Normal.swift in Sources */,
 				F9AD7AE120BE815A00AD302F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
