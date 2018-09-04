@@ -94,4 +94,18 @@ class StringExtensionTest: XCTestCase {
         XCTAssert("12158@qq.com".isEmail)
         XCTAssertFalse("1215852067@qq.c".isEmail)
     }
+    
+    func testTrim() -> Void {
+        let temp = " 1 2 \nd"
+        print(" 1 2 \nd".trimed)
+        print(" 1 2 d\n".trimed)
+
+    }
+    
+    func testAnyClass() -> Void {
+        guard let clz = "ViewController".classType(moudelName: "Example") as? UIViewController.Type else { return }
+        print(clz)
+        print(clz.init())
+        
+    }
 }

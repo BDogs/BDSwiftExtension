@@ -11,22 +11,9 @@ import UIKit
 
 extension String {
     
-    
     public func sizeForText(font: UIFont, maxSize: CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), lineBreakMode: NSLineBreakMode = .byWordWrapping) -> CGSize {
         var result: CGSize = CGSize.zero
         let str = self as NSString
-        
-//        if str.responds(to: #selector(NSString.size(attributes:))) {
-//            var attr: [String: Any] = [NSFontAttributeName: font]
-//            if lineBreakMode != .byWordWrapping {
-//                let style = NSMutableParagraphStyle()
-//                style.lineBreakMode = lineBreakMode
-//                attr[NSParagraphStyleAttributeName] = style
-//            }
-//            print(str.size(attributes: attr))
-//            
-//        }
-        
         
         if str.responds(to: #selector(NSString.boundingRect(with:options:attributes:context:))) {
             var attr: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font]
@@ -39,8 +26,6 @@ extension String {
             let rect =  str.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: attr, context: nil)
             result = rect.size
             
-        } else {
-//            result = str.size
         }
         
         let width = result.width.rounded(.up)
@@ -49,7 +34,15 @@ extension String {
         return CGSize(width: width, height: height)
     }
     
+    public func widthForText(font: UIFont, maxHeight: CGFloat, lineBreakMode: NSLineBreakMode = .byWordWrapping) -> CGFloat {
+        let size = sizeForText(font: font, maxSize: CGSize(width: CGFloat.greatestFiniteMagnitude, height: maxHeight), lineBreakMode: lineBreakMode)
+        return size.width
+    }
     
+    public func heightForText(font: UIFont, maxWidth: CGFloat, lineBreakMode: NSLineBreakMode = .byWordWrapping) -> CGFloat {
+        let size = sizeForText(font: font, maxSize: CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude), lineBreakMode: lineBreakMode)
+        return size.height
+    }
     
     
 }

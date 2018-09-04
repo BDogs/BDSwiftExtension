@@ -86,6 +86,11 @@ extension String {
         return NSString(string: self)
     }
     
+    /// 去掉首尾空白字符
+    public var trimed: String {
+        return trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     /// eg："1".bool -> true
     ///     "False".bool -> false
     ///     "Hello".bool -> nil
@@ -253,48 +258,13 @@ extension String {
         
         return mostCommon
     }
+    
+    public func classType(moudelName: String) -> AnyClass? {
+        return NSClassFromString("\(moudelName).ViewController")
+    }
 
 }
 
-// MARK: - encode and decode
-public extension String {
-    
-    /// Create a new string from a base64 string (if applicable).
-    ///
-    /// eg: String(base64: "SGVsbG8gV29ybGQh") = "Hello World!"
-    /// eg: String(base64: "hello") = nil
-    ///
-    /// - Parameter base64: base64 string.
-    public init?(base64: String) {
-        guard let decodedData = Data(base64Encoded: base64) else { return nil }
-        guard let str = String(data: decodedData, encoding: .utf8) else { return nil }
-        self.init(str)
-    }
-    
-    /// base64 字符串
-    /// eg: "Hello World!".base64 = "SGVsbG8gV29ybGQh"
-    public var base64: String? {
-        guard let orignalData = data(using: .utf8) else { return nil }
-        let encodedData = orignalData.base64EncodedData(options: [])
-        return String(data: encodedData, encoding: .utf8)
-    }
-    
-    /// Readable string from a URL string.
-    ///
-    /// eg: "it's%20easy%20to%20decode%20strings".urlDecoded -> "it's easy to decode strings"
-    public var urlDecoded: String {
-        return removingPercentEncoding ?? self
-    }
-    
-    /// SwifterSwift: URL escaped string.
-    ///
-    /// eg: "it's easy to encode strings".urlEncoded -> "it's%20easy%20to%20encode%20strings"
-    public var urlEncoded: String {
-        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-    }
-
-    
-}
 
 // MARK: - NSAttributedString extensions
 public extension String {
@@ -372,6 +342,17 @@ public extension String {
         guard rhs > 0 else { return "" }
         return String(repeating: lhs, count: rhs)
     }
+}
+
+
+public extension String {
+    public func jsonSerialization() -> Any? {
+        guard let data = data(using: .utf8) else { return nil }
+        let obj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        return obj
+    }
+    
+    
 }
 
 
