@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F93374D1213D161D002A8CAE /* String+Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93374D0213D161D002A8CAE /* String+Coding.swift */; };
 		F93374D4213E7660002A8CAE /* Float+Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93374D3213E7660002A8CAE /* Float+Normal.swift */; };
+		F9337512213FBA7A002A8CAE /* DateExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9337511213FBA7A002A8CAE /* DateExtensionTest.swift */; };
 		F9AD7AE120BE815A00AD302F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7AE020BE815A00AD302F /* AppDelegate.swift */; };
 		F9AD7AE320BE815A00AD302F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7AE220BE815A00AD302F /* ViewController.swift */; };
 		F9AD7AE620BE815A00AD302F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9AD7AE420BE815A00AD302F /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		F93374D0213D161D002A8CAE /* String+Coding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Coding.swift"; sourceTree = "<group>"; };
 		F93374D3213E7660002A8CAE /* Float+Normal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Normal.swift"; sourceTree = "<group>"; };
+		F9337511213FBA7A002A8CAE /* DateExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTest.swift; sourceTree = "<group>"; };
 		F9AD7ADD20BE815A00AD302F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9AD7AE020BE815A00AD302F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9AD7AE220BE815A00AD302F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				F9AD7B6220BFC60500AD302F /* View */,
 				F9AD7AF520BE815B00AD302F /* ExampleTests.swift */,
 				F9E11A8720C5166E007803F6 /* StringExtensionTest.swift */,
+				F9337511213FBA7A002A8CAE /* DateExtensionTest.swift */,
 				F9AD7AF720BE815B00AD302F /* Info.plist */,
 			);
 			path = ExampleTests;
@@ -578,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9AD7B6520BFC64E00AD302F /* TestCollectionReusableView.swift in Sources */,
+				F9337512213FBA7A002A8CAE /* DateExtensionTest.swift in Sources */,
 				F9E11A8820C5166E007803F6 /* StringExtensionTest.swift in Sources */,
 				F9AD7AF620BE815B00AD302F /* ExampleTests.swift in Sources */,
 			);

@@ -107,5 +107,15 @@ class StringExtensionTest: XCTestCase {
         print(clz)
         print(clz.init())
         
+
+        
     }
+    
+    func testEmoji() -> Void {
+        print("lalal".containEmoji)
+        print("lalal🤓".containEmoji)
+        print("🤨".containEmoji)
+        print("🥰".containEmoji)
+    }
+    
 }
