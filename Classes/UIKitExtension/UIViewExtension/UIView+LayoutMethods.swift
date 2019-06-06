@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 
-let BD_IS_IPHONEX = UIScreen.main.bounds.height == 812
-let BD_NAVIGATIONBAR_HEIGHT: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 88 : 64
-let BD_TabBAR_HEIGHT: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 83 : 49
-let BD_SAFE_BOTTOM: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 34 : 0
-let BD_SAFE_TOP: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 44 : 20
+public let BD_IS_IPHONEX = UIScreen.main.bounds.height == 812
+public let BD_NAVIGATIONBAR_HEIGHT: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 88 : 64
+public let BD_TabBAR_HEIGHT: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 83 : 49
+public let BD_SAFE_BOTTOM: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 34 : 0
+public let BD_SAFE_TOP: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 44 : 20
 
-let BD_SCREEN_WIDTH = UIScreen.main.bounds.width
-let BD_SCREEN_HEIGHT = UIScreen.main.bounds.height
-let BD_SCREEN_HEIGHT_WITHOUT_STATUSBAR = BD_SCREEN_HEIGHT-UIApplication.shared.statusBarFrame.height
-let BD_SCREEN_HEIGHT_WITHOUT_NAVIGATIONBAR = BD_SCREEN_HEIGHT-BD_NAVIGATIONBAR_HEIGHT
+public let BD_SCREEN_WIDTH = UIScreen.main.bounds.width
+public let BD_SCREEN_HEIGHT = UIScreen.main.bounds.height
+public let BD_SCREEN_HEIGHT_WITHOUT_STATUSBAR = BD_SCREEN_HEIGHT-UIApplication.shared.statusBarFrame.height
+public let BD_SCREEN_HEIGHT_WITHOUT_NAVIGATIONBAR = BD_SCREEN_HEIGHT-BD_NAVIGATIONBAR_HEIGHT
 
-let BD_SYSTEM_VERSION = UIDevice.current.systemVersion
+public let BD_SYSTEM_VERSION = UIDevice.current.systemVersion
 fileprivate var kTopSuperView = "kTopSuperView"
 
 
@@ -28,7 +28,7 @@ fileprivate var kTopSuperView = "kTopSuperView"
 ///
 /// - Parameter v: target version
 /// - Returns: 是否大于
-func BD_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: Double) -> Bool {
+public func BD_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: Double) -> Bool {
     return rint(Double(BD_SYSTEM_VERSION)!) > rint(v)
 }
 

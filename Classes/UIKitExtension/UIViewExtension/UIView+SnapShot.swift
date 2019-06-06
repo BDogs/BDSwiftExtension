@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-extension UIView {
+public extension UIView {
     
-    public func snapshotImage(rect: CGRect, isOpaque: Bool = false) -> UIImage? {
+    func snapshotImage(rect: CGRect, isOpaque: Bool = false) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, isOpaque, 0)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         layer.render(in: context)
