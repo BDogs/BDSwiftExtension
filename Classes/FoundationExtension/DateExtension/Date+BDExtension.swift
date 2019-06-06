@@ -42,7 +42,7 @@ public extension Date {
      
      @return NSString representing the formatted date string.
      */
-    public func string(format: String = "dd/MM/yyyy HH:mm", currentCalender: Calendar = Calendar.current) -> String {
+    func string(format: String = "dd/MM/yyyy HH:mm", currentCalender: Calendar = Calendar.current) -> String {
         let formatter = DateFormatter()
         formatter.calendar = currentCalender
         formatter.dateFormat = format
@@ -51,7 +51,7 @@ public extension Date {
     
     
     
-    public static func dateWithString(string: String?, format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
+    static func dateWithString(string: String?, format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
         guard let dateString = string else { return nil }
         let formatter = DateFormatter()
         formatter.dateFormat = format
@@ -65,7 +65,7 @@ public extension Date {
 //        return result
 //    }
     
-    public func isToday(currentCalendar: Calendar = Calendar.current) -> Bool {
+    func isToday(currentCalendar: Calendar = Calendar.current) -> Bool {
         let today = Date()
         
         if today.day(currentCalendar: currentCalendar) == self.day(currentCalendar: currentCalendar) &&
@@ -77,19 +77,19 @@ public extension Date {
         }
     }
     
-    public func isTheSameMonth(to date: Date, currentCalendar: Calendar = Calendar.current) -> Bool {
+    func isTheSameMonth(to date: Date, currentCalendar: Calendar = Calendar.current) -> Bool {
         let str1 = string(format: "yyyy-MM", currentCalender: currentCalendar)
         let str2 = date.string(format: "yyyy-MM", currentCalender: currentCalendar)
         return str1 == str2
     }
     
-    public func isTheSameDay(to date: Date, currentCalendar: Calendar = Calendar.current) -> Bool {
+    func isTheSameDay(to date: Date, currentCalendar: Calendar = Calendar.current) -> Bool {
         let str1 = string(format: "yyyy-MM-dd", currentCalender: currentCalendar)
         let str2 = date.string(format: "yyyy-MM-dd", currentCalender: currentCalendar)
         return str1 == str2
     }
     
-    public var isInToday: Bool {
+    var isInToday: Bool {
         return Calendar.current.isDateInToday(self)
     }
     
@@ -97,7 +97,7 @@ public extension Date {
     ///
     ///     Date().isInYesterday -> false
     ///
-    public var isInYesterday: Bool {
+    var isInYesterday: Bool {
         return Calendar.current.isDateInYesterday(self)
     }
     
@@ -105,37 +105,37 @@ public extension Date {
     ///
     ///     Date().isInTomorrow -> false
     ///
-    public var isInTomorrow: Bool {
+    var isInTomorrow: Bool {
         return Calendar.current.isDateInTomorrow(self)
     }
     
     /// Check if date is within a weekend period.
-    public var isInWeekend: Bool {
+    var isInWeekend: Bool {
         return Calendar.current.isDateInWeekend(self)
     }
     
     /// Check if date is within a weekday period.
-    public var isWorkday: Bool {
+    var isWorkday: Bool {
         return !Calendar.current.isDateInWeekend(self)
     }
     
     /// Check if date is within the current week.
-    public var isInCurrentWeek: Bool {
+    var isInCurrentWeek: Bool {
         return Calendar.current.isDate(self, equalTo: Date(), toGranularity: .weekOfYear)
     }
     
     /// Check if date is within the current month.
-    public var isInCurrentMonth: Bool {
+    var isInCurrentMonth: Bool {
         return Calendar.current.isDate(self, equalTo: Date(), toGranularity: .month)
     }
     
     /// Check if date is within the current year.
-    public var isInCurrentYear: Bool {
+    var isInCurrentYear: Bool {
         return Calendar.current.isDate(self, equalTo: Date(), toGranularity: .year)
     }
 
     
-    public var isInPast: Bool {
+    var isInPast: Bool {
         return self < Date()
     }
     
@@ -146,7 +146,7 @@ public extension Date {
     ///   - endDate: endDate date to compare self to.
     ///   - includeBounds: true if the start and end date should be included (default is false)
     /// - Returns: true if the date is between the two given dates.
-    public func isBetween(_ startDate: Date, _ endDate: Date, includeBounds: Bool = false) -> Bool {
+    func isBetween(_ startDate: Date, _ endDate: Date, includeBounds: Bool = false) -> Bool {
         if includeBounds {
             return startDate.compare(self).rawValue * compare(endDate).rawValue >= 0
         }
@@ -160,7 +160,7 @@ public extension Date {
     ///   - component: Calendar.Component to use.
     ///   - date: Date to compare self to.
     /// - Returns: true if the date is within a number of components of another date
-    public func isWithin(_ value: UInt, _ component: Calendar.Component, of date: Date) -> Bool {
+    func isWithin(_ value: UInt, _ component: Calendar.Component, of date: Date) -> Bool {
         let components = Calendar.current.dateComponents([component], from: self, to: date)
         let componentValue = components.value(for: component)!
         return abs(componentValue) <= value
@@ -177,7 +177,7 @@ public extension Date {
     ///   - fromDate: minimum date (default is Date.distantPast)
     ///   - toDate: maximum date (default is Date.distantFuture)
     /// - Returns: random date between two dates.
-    public static func random(from fromDate: Date = Date.distantPast, upTo toDate: Date = Date.distantFuture) -> Date {
+    static func random(from fromDate: Date = Date.distantPast, upTo toDate: Date = Date.distantFuture) -> Date {
         guard fromDate != toDate else {
             return fromDate
         }
@@ -192,7 +192,7 @@ public extension Date {
     }
 
     
-    public func isFuture(currentCalendar: Calendar = Calendar.current) -> Bool {
+    func isFuture(currentCalendar: Calendar = Calendar.current) -> Bool {
         let today = Date()
         
         return self > today
@@ -217,15 +217,15 @@ public extension Date {
 //        return false
     }
     
-    public func second(currentCalendar: Calendar = Calendar.current) -> Int {
+    func second(currentCalendar: Calendar = Calendar.current) -> Int {
         return currentCalendar.component(.second, from: self)
     }
     
-    public func minute(currentCalendar: Calendar = Calendar.current) -> Int {
+    func minute(currentCalendar: Calendar = Calendar.current) -> Int {
         return currentCalendar.component(.minute, from: self)
     }
     
-    public func hour(currentCalendar: Calendar = Calendar.current) -> Int {
+    func hour(currentCalendar: Calendar = Calendar.current) -> Int {
         return currentCalendar.component(.hour, from: self)
     }
     
@@ -236,7 +236,7 @@ public extension Date {
     ///     var someDate = Date()
     ///     someDate.hour = 13 // sets someDate's hour to 1 pm.
     ///
-    public var hour: Int {
+    var hour: Int {
         get {
             return Calendar.current.component(.hour, from: self)
         }
@@ -259,7 +259,7 @@ public extension Date {
     ///     var someDate = Date()
     ///     someDate.minute = 10 // sets someDate's minutes to 10.
     ///
-    public var minute: Int {
+    var minute: Int {
         get {
             return Calendar.current.component(.minute, from: self)
         }
@@ -282,7 +282,7 @@ public extension Date {
     ///     var someDate = Date()
     ///     someDate.second = 15 // sets someDate's seconds to 15.
     ///
-    public var second: Int {
+    var second: Int {
         get {
             return Calendar.current.component(.second, from: self)
         }
@@ -305,7 +305,7 @@ public extension Date {
     ///     var someDate = Date()
     ///     someDate.nanosecond = 981379985 // sets someDate's seconds to 981379985.
     ///
-    public var nanosecond: Int {
+    var nanosecond: Int {
         get {
             return Calendar.current.component(.nanosecond, from: self)
         }
@@ -329,7 +329,7 @@ public extension Date {
     ///     var someDate = Date()
     ///     someDate.millisecond = 68 // sets someDate's nanosecond to 68000000.
     ///
-    public var millisecond: Int {
+    var millisecond: Int {
         get {
             return Calendar.current.component(.nanosecond, from: self) / 1000000
         }
@@ -352,7 +352,7 @@ public extension Date {
     ///     var someDate = Date()
     ///     someDate.day = 1 // sets someDate's day of month to 1.
     ///
-    public var day: Int {
+    var day: Int {
         get {
             return Calendar.current.component(.day, from: self)
         }
@@ -368,11 +368,11 @@ public extension Date {
         }
     }
     
-    public func day(currentCalendar: Calendar = Calendar.current) -> Int {
+    func day(currentCalendar: Calendar = Calendar.current) -> Int {
         return currentCalendar.component(.day, from: self)
     }
     
-    public func weekday(currentCalendar: Calendar = Calendar.current) -> Int {
+    func weekday(currentCalendar: Calendar = Calendar.current) -> Int {
         return currentCalendar.component(.weekday, from: self)
     }
     
@@ -383,7 +383,7 @@ public extension Date {
     ///     var someDate = Date()
     ///     someDate.month = 10 // sets someDate's month to 10.
     ///
-    public var month: Int {
+    var month: Int {
         get {
             return Calendar.current.component(.month, from: self)
         }
@@ -399,7 +399,7 @@ public extension Date {
         }
     }
     
-    public func month(currentCalendar: Calendar = Calendar.current) -> Int {
+    func month(currentCalendar: Calendar = Calendar.current) -> Int {
         return currentCalendar.component(.month, from: self)
     }
     
@@ -410,7 +410,7 @@ public extension Date {
     ///        var someDate = Date()
     ///        someDate.year = 2000 // sets someDate's year to 2000
     ///
-    public var year: Int {
+    var year: Int {
         get {
             return Calendar.current.component(.year, from: self)
         }
@@ -424,19 +424,19 @@ public extension Date {
         }
     }
     
-    public func year(currentCalendar: Calendar = Calendar.current) -> Int {
+    func year(currentCalendar: Calendar = Calendar.current) -> Int {
         return currentCalendar.component(.year, from: self)
     }
     
-    public var weekOfYear: Int {
+    var weekOfYear: Int {
         return Calendar.current.component(.weekOfYear, from: self)
     }
     
-    public var weekOfMonth: Int {
+    var weekOfMonth: Int {
         return Calendar.current.component(.weekOfMonth, from: self)
     }
     
-    public func chineseDay(from: Date) -> String? {
+    func chineseDay(from: Date) -> String? {
         let chineseCalendar = Calendar(identifier: .chinese)
         let components = chineseCalendar.dateComponents([.year, .month, .day], from: from)
         guard let day = components.day else { return nil }
@@ -444,13 +444,13 @@ public extension Date {
         return d_str
     }
     
-    public func dateInTheMonth(day: Int, currentCalendar: Calendar = Calendar.current) -> Date? {
+    func dateInTheMonth(day: Int, currentCalendar: Calendar = Calendar.current) -> Date? {
         var components = currentCalendar.dateComponents([.year, .month, .day], from: self)
         components.day = day
         return currentCalendar.date(from: components)
     }
     
-    public func firstDateInTheMonth(currentCalendar: Calendar = Calendar.current) -> Date? {
+    func firstDateInTheMonth(currentCalendar: Calendar = Calendar.current) -> Date? {
         var components = currentCalendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
         components.day = 1
         components.hour = 0
@@ -461,7 +461,7 @@ public extension Date {
         return minimum
     }
     
-    public func daysInTheMonth(currentCalendar: Calendar = Calendar.current) -> Int {
+    func daysInTheMonth(currentCalendar: Calendar = Calendar.current) -> Int {
         guard let range = currentCalendar.range(of: .day, in: .month, for: Date()) else {
             return 0
         }
@@ -469,7 +469,7 @@ public extension Date {
     }
     
     
-    public func datesInTheMonth(currentCalendar: Calendar = Calendar.current) -> [Date] {
+    func datesInTheMonth(currentCalendar: Calendar = Calendar.current) -> [Date] {
         var dates: [Date] = []
         
         let daysCount = self.daysInTheMonth(currentCalendar: currentCalendar)
@@ -518,30 +518,30 @@ public extension Date {
     }
     
     // MARK: - offset
-    public func dateByAddingMonths(offset: Int, currentCalendar: Calendar = Calendar.current) -> Date? {
+    func dateByAddingMonths(offset: Int, currentCalendar: Calendar = Calendar.current) -> Date? {
         var components = DateComponents()
         components.month = offset
         return currentCalendar.date(byAdding: components, to: self)
     }
     
-    public func dateByAddingDays(offset: Int, currentCalendar: Calendar = Calendar.current) -> Date? {
+    func dateByAddingDays(offset: Int, currentCalendar: Calendar = Calendar.current) -> Date? {
         var components = DateComponents()
         components.day = offset
         return currentCalendar.date(byAdding: components, to: self)
     }
     
-    public func daysFrom(theOne: Date, currentCalendar: Calendar = Calendar.current) -> Int? {
+    func daysFrom(theOne: Date, currentCalendar: Calendar = Calendar.current) -> Int? {
         let components = currentCalendar.dateComponents([.day], from: theOne, to: self)
         return components.day
     }
     
-    public func monthsFrom(theOne: Date, currentCalendar: Calendar = Calendar.current) -> Int? {
+    func monthsFrom(theOne: Date, currentCalendar: Calendar = Calendar.current) -> Int? {
         let components = currentCalendar.dateComponents([.month], from: theOne, to: self)
         return components.month
     }
     
     //    
-    public func midnight(calendar: Calendar = Calendar.current) -> (Date?, Date?) {
+    func midnight(calendar: Calendar = Calendar.current) -> (Date?, Date?) {
         let components = calendar.dateComponents([.year, .month, .day], from: self)
         guard let midnight0 = calendar.date(from: components) else { return (nil, nil) }
         let midnight24 = calendar.date(byAdding: .day, value: 1, to: midnight0, wrappingComponents: false)
@@ -550,19 +550,19 @@ public extension Date {
 }
 
 
-extension Date {
+public extension Date {
     /// Quarter 季度.
     ///
     ///        Date().quarter -> 3 // date in third quarter of the year.
     ///
-    public var quarter: Int {
+    var quarter: Int {
         let month = Double(Calendar.current.component(.month, from: self))
         let numberOfMonths = Double(Calendar.current.monthSymbols.count)
         let numberOfMonthsInQuarter = numberOfMonths / 4
         return Int(ceil(month/numberOfMonthsInQuarter))
     }
     
-    public init(year: Int?=nil, month: Int?=nil, day: Int?=nil, hour: Int?=nil, minute: Int?=nil, second: Int?=nil, nanosecond: Int?=nil) {
+    init(year: Int?=nil, month: Int?=nil, day: Int?=nil, hour: Int?=nil, minute: Int?=nil, second: Int?=nil, nanosecond: Int?=nil) {
         
         var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: Date())
         if let year = year { components.year = year }
@@ -578,7 +578,7 @@ extension Date {
     }
     
     /// 根据“分”取整点
-    public func nearest(minutes: Int) -> Date? {
+    func nearest(minutes: Int) -> Date? {
         var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: self)
         guard let currentMinute = components.minute else { return nil }
         let mid = minutes/2 + 1
@@ -599,7 +599,7 @@ extension Date {
     ///
     /// - Parameter component: calendar component to get date at the beginning of.
     /// - Returns: date at the beginning of calendar component (if applicable).
-    public func beginning(of component: Calendar.Component) -> Date? {
+    func beginning(of component: Calendar.Component) -> Date? {
         if component == .day {
             return Calendar.current.startOfDay(for: self)
         }
@@ -633,11 +633,11 @@ extension Date {
         return Calendar.current.date(from: Calendar.current.dateComponents(components, from: self))
     }
 
-    public func adding(_ component: Calendar.Component, value: Int) -> Date {
+    func adding(_ component: Calendar.Component, value: Int) -> Date {
         return Calendar.current.date(byAdding: component, value: value, to: self)!
     }
     
-    public mutating func add(_ component: Calendar.Component, value: Int) {
+    mutating func add(_ component: Calendar.Component, value: Int) {
         if let date = Calendar.current.date(byAdding: component, value: value, to: self) {
             self = date
         }
@@ -652,7 +652,7 @@ extension Date {
     ///
     /// - Parameter component: calendar component to get date at the end of.
     /// - Returns: date at the end of calendar component (if applicable).
-    public func end(of component: Calendar.Component) -> Date? {
+    func end(of component: Calendar.Component) -> Date? {
         switch component {
         case .second:
             var date = adding(.second, value: 1)

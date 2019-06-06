@@ -10,7 +10,6 @@ import UIKit
 
 public let BD_DocumentDirectory_Path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
 
-
 public class BDFileUtilities: NSObject {
     
     /// 将 data 保存到沙盒
@@ -72,11 +71,6 @@ extension Dictionary {
         let dic = self as NSDictionary
         return dic.save(to: path)
     }
-    
-//    static public func contentsOfFile(path: String) -> Dictionary? {
-//        guard let dic = NSDictionary(contentsOfFile: path) else { return nil }
-//        return dic as? Dictionary
-//    }
 }
 
 extension Array {
@@ -84,12 +78,5 @@ extension Array {
         let dic = self as NSArray
         return dic.save(to: path)
     }
-    
-//    static public func contentsOfFile(path: String) -> Array? {
-//        guard let dic = NSArray(contentsOfFile: path) else { return nil }
-//        return dic as? Array
-//    }
-//
-
 }
 

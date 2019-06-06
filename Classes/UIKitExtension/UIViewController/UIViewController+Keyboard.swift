@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 @objc public enum KeyboardStatus: Int {
     case awakening
     case closed
@@ -19,24 +20,24 @@ public protocol PLLSControllerKeyboardProtocol {
     func addObserverForKeyboardWillChangeFrame(observer: PLLSControllerKeyboardProtocol) -> Void
     func removeObserverForKeyboardWillChangeFrame(observer: PLLSControllerKeyboardProtocol) -> Void
     //    func didReceiveNotificationOfKeyboardWillChangeFrame(notify: Notification) -> Void
-    func willShowKeyboard(from beginFrame: CGRect, to endFrame: CGRect, duration: TimeInterval, status: KeyboardStatus, bottom: CGFloat, options: UIView.AnimationOptions, responder: UIView?) -> Void
+    func willShowKeyboard(from beginFrame: CGRect, to endFrame: CGRect, duration: TimeInterval, status: KeyboardStatus, bottom: CGFloat, options: UIView.AnimationOptions) -> Void
 }
 
 extension UIViewController {
     
-    static let BDInputFirstResponderKey = UnsafeRawPointer.init(bitPattern: "BDInputFirstResponderKey".hashValue)
-    
-    var inputFirstResponder: UIView? {
-        set {
-            guard let key = UIViewController.BDInputFirstResponderKey else { return }
-            objc_setAssociatedObject(self, key, newValue, .OBJC_ASSOCIATION_ASSIGN)
-        }
-        
-        get {
-            guard let key = UIViewController.BDInputFirstResponderKey else { return nil }
-            return objc_getAssociatedObject(self, key) as? UIView
-        }
-    }
+//    static let BDInputFirstResponderKey = UnsafeRawPointer.init(bitPattern: "BDInputFirstResponderKey".hashValue)
+//
+//    var inputFirstResponder: UIView? {
+//        set {
+//            guard let key = UIViewController.BDInputFirstResponderKey else { return }
+//            objc_setAssociatedObject(self, key, newValue, .OBJC_ASSOCIATION_ASSIGN)
+//        }
+//
+//        get {
+//            guard let key = UIViewController.BDInputFirstResponderKey else { return nil }
+//            return objc_getAssociatedObject(self, key) as? UIView
+//        }
+//    }
     
     
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -68,15 +69,15 @@ extension UIViewController {
     }
     
     @objc func textFieldDidBeginEditing(notify: Notification) {
-        inputFirstResponder = notify.object as? UIView
+//        inputFirstResponder = notify.object as? UIView
     }
     
     @objc func textViewDidBeginEditing(notify: Notification) {
-        inputFirstResponder = notify.object as? UIView
+//        inputFirstResponder = notify.object as? UIView
     }
     
     @objc func didReceiveNotificationOfKeyboardWillChangeFrame(notify: Notification) -> Void {
-        let responder = inputFirstResponder
+//        let responder = inputFirstResponder
         guard let userInfo = notify.userInfo else { return }
         guard let endFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         guard let beginFrame = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect else { return }
@@ -103,7 +104,7 @@ extension UIViewController {
         }
         
         if let controller = self as? PLLSControllerKeyboardProtocol {
-            controller.willShowKeyboard(from: beginFrame, to: endFrame, duration: duration, status: status, bottom: bottom, options: [UIView.AnimationOptions(rawValue: UInt(curve<<16)), UIView.AnimationOptions.beginFromCurrentState], responder: responder)
+            controller.willShowKeyboard(from: beginFrame, to: endFrame, duration: duration, status: status, bottom: bottom, options: [UIView.AnimationOptions(rawValue: UInt(curve<<16)), .beginFromCurrentState])
         }
         
     }

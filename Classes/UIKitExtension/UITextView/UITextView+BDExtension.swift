@@ -20,6 +20,17 @@ extension UITextView {
     
     static let BDTextViewPlaceholderLabelKey = UnsafeRawPointer.init(bitPattern: "BDTextViewPlaceholderLabelKey".hashValue)
     
+    public var bd_text: String {
+        set {
+            text = newValue
+            dealWithLimit()
+        }
+        
+        get {
+            return text
+        }
+    }
+    
     @IBInspectable
     public var placeholder: String? {
         set {
@@ -91,7 +102,7 @@ extension UITextView {
         }
     }
     
-    var placeholderLabel: UILabel {
+    public var placeholderLabel: UILabel {
         get {
             guard let result = objc_getAssociatedObject(self, UITextView.BDTextViewPlaceholderLabelKey!) as? UILabel else {
                 let label = UILabel(frame: CGRect.zero)
@@ -125,10 +136,10 @@ extension UITextView {
         }
         
         let text = self.text as NSString
-        var residue = limit-text.length
+        let residue = limit-text.length
         if residue <= 0 {
             self.text = text.substring(to: limit)
-            residue = 0
+//            residue = 0
         }
         if self.inputHandle != nil {
             self.inputHandle!(residue)
@@ -137,7 +148,7 @@ extension UITextView {
     }
     
     //residue
-    func inputWords(handle: @escaping (_ residue: Int) -> Void) -> Void {
+    public func inputWords(handle: @escaping (_ residue: Int) -> Void) -> Void {
         self.inputHandle = handle
     }
     

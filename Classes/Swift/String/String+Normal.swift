@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-extension String {
+public extension String {
     /// 要不要去掉空白字符呢
-    public var int: Int? {
+    var int: Int? {
         return Int(self)
     }
     
     /// eg: "12" "12.34" "-0xFF" ".23e99"
-    public var  number: NSNumber? {
+    var  number: NSNumber? {
         let temp = stringByRemovedWhitespacesAndNewlines()
         guard !temp.isEmpty else {
             return nil
@@ -43,7 +43,7 @@ extension String {
         }
     }
     
-    public var intValueWithoutWhitespacesAndNewlines: Int? {
+    var intValueWithoutWhitespacesAndNewlines: Int? {
         let temp = self.stringByRemovedWhitespacesAndNewlines()
         return Int(temp)
     }
@@ -52,7 +52,7 @@ extension String {
     ///
     /// - Parameter locale: Locale (default is Locale.current)
     /// - Returns: Optional Float value from given string.
-    public func float(locale: Locale = .current) -> Float? {
+    func float(locale: Locale = .current) -> Float? {
         let formatter = NumberFormatter()
         formatter.locale = locale
         formatter.allowsFloats = true
@@ -63,7 +63,7 @@ extension String {
     ///
     /// - Parameter locale: Locale (default is Locale.current)
     /// - Returns: Optional Double value from given string.
-    public func double(locale: Locale = .current) -> Double? {
+    func double(locale: Locale = .current) -> Double? {
         let formatter = NumberFormatter()
         formatter.locale = locale
         formatter.allowsFloats = true
@@ -74,7 +74,7 @@ extension String {
     ///
     /// - Parameter locale: Locale (default is Locale.current)
     /// - Returns: Optional CGFloat value from given string.
-    public func cgFloat(locale: Locale = .current) -> CGFloat? {
+    func cgFloat(locale: Locale = .current) -> CGFloat? {
         let formatter = NumberFormatter()
         formatter.locale = locale
         formatter.allowsFloats = true
@@ -82,19 +82,19 @@ extension String {
     }
     
     /// NSString from a string.
-    public var nsString: NSString {
+    var nsString: NSString {
         return NSString(string: self)
     }
     
     /// 去掉首尾空白字符
-    public var trimed: String {
+    var trimed: String {
         return trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     /// eg："1".bool -> true
     ///     "False".bool -> false
     ///     "Hello".bool -> nil
-    public var bool: Bool? {
+    var bool: Bool? {
         // 去掉收尾空白字符 转小写
         let lowercased = trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if lowercased == "true" || lowercased == "1" {
@@ -110,7 +110,7 @@ extension String {
     ///        String(randomOfLength: 10) -> "gY8r3MHvlQ"
     ///
     /// - Parameter length: number of characters in string.
-    public init(randomOfLength length: Int) {
+    init(randomOfLength length: Int) {
         guard length > 0 else {
             self.init()
             return
@@ -126,17 +126,17 @@ extension String {
         self.init(randomString)
     }
     
-    public var url: URL? {
+    var url: URL? {
         return URL(string: self)
     }
     
-    public var fileUrl: URL {
+    var fileUrl: URL {
         return URL(fileURLWithPath: self)
     }
         
     // MARK: - transform
     /// 字符串倒序
-    public func reverseString() -> String {
+    func reverseString() -> String {
         return String(reversed())
     }
     
@@ -146,7 +146,7 @@ extension String {
     ///   - aString:
     ///   - options:
     /// - Returns: 如果有公共后缀则返回 如果没有返回空字符串
-    public func commonSuffix(with aString: String, options: String.CompareOptions = []) -> String {
+    func commonSuffix(with aString: String, options: String.CompareOptions = []) -> String {
         let reversedSuffix = reverseString().commonPrefix(with: aString.reverseString(), options: options)
         
         return reversedSuffix.reverseString()
@@ -154,7 +154,7 @@ extension String {
 
     /// 去掉字符串中空格
     /// eg：" 2 123 \n" -> "2123"
-    public func stringByRemovedWhitespacesAndNewlines() -> String {
+    func stringByRemovedWhitespacesAndNewlines() -> String {
         var temp = self.components(separatedBy: .whitespacesAndNewlines)
         temp = temp.filter { $0 != "" }
         return temp.joined()
@@ -164,7 +164,7 @@ extension String {
     ///
     /// - Parameter limit: 长度
     /// - Returns:
-    public func stringByLimited(limit: Int) -> String {
+    func stringByLimited(limit: Int) -> String {
         guard count < limit else {
             return self
         }
@@ -176,7 +176,7 @@ extension String {
     /// eg: "Swift is amazing".wordsCount() -> 3
     ///
     /// - Returns: The count of words contained in a string.
-    public func wordCount() -> Int {
+    func wordCount() -> Int {
         let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
         let comps = components(separatedBy: chararacterSet)
         let words = comps.filter { !$0.isEmpty }
@@ -189,7 +189,7 @@ extension String {
     /// eg: "Hello World!"[20] -> nil
     ///
     /// - Parameter i: index.
-    public subscript(i: Int) -> String? {
+    subscript(i: Int) -> String? {
         get {
             guard i >= 0 && i < count else { return nil }
             return String(self[index(startIndex, offsetBy: i)])
@@ -202,7 +202,7 @@ extension String {
     /// eg: "Hello World!"[21..<110] -> nil
     ///
     /// - Parameter range: Half-open range.
-    public subscript(range: CountableRange<Int>) -> String? {
+    subscript(range: CountableRange<Int>) -> String? {
     
         guard let lowerIndex = index(startIndex, offsetBy: max(0, range.lowerBound), limitedBy: endIndex) else { return nil }
         guard let upperIndex = index(lowerIndex, offsetBy: range.upperBound - range.lowerBound, limitedBy: endIndex) else { return nil }
@@ -215,7 +215,7 @@ extension String {
     ///        "Hello World!"[21...110] -> nil
     ///
     /// - Parameter range: Closed range.
-    public subscript(range: ClosedRange<Int>) -> String? {
+    subscript(range: ClosedRange<Int>) -> String? {
         
         guard let lowerIndex = index(startIndex, offsetBy: max(0, range.lowerBound), limitedBy: endIndex) else { return nil }
         guard let upperIndex = index(lowerIndex, offsetBy: range.upperBound - range.lowerBound + 1, limitedBy: endIndex) else { return nil }
@@ -230,7 +230,7 @@ extension String {
     ///
     /// - Parameter format: date format.
     /// - Returns: Date object from string (if applicable).
-    public func date(withFormat format: String) -> Date? {
+    func date(withFormat format: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.date(from: self)
@@ -241,7 +241,7 @@ extension String {
     ///
     ///        "Hello world".localized -> Hallo Welt
     ///
-    public func localized(comment: String = "") -> String {
+    func localized(comment: String = "") -> String {
         return NSLocalizedString(self, comment: comment)
     }
     
@@ -250,7 +250,7 @@ extension String {
     ///        "This is a test, since e is appearing everywhere e should be the common character".mostCommonCharacter() -> "e"
     ///
     /// - Returns: The most common character.
-    public func mostCommonCharacter() -> Character? {
+    func mostCommonCharacter() -> Character? {
         let mostCommon = stringByRemovedWhitespacesAndNewlines().reduce(into: [Character: Int]()) {
             let count = $0[$1] ?? 0
             $0[$1] = count + 1
@@ -259,7 +259,7 @@ extension String {
         return mostCommon
     }
     
-    public func classType(moudelName: String) -> AnyClass? {
+    func classType(moudelName: String) -> AnyClass? {
         return NSClassFromString("\(moudelName).ViewController")
     }
 
@@ -279,28 +279,28 @@ public extension String {
     
     #if os(iOS) || os(macOS)
     /// Bold string.
-    public var bold: NSAttributedString {
+    var bold: NSAttributedString {
         return NSMutableAttributedString(string: self, attributes: [NSAttributedString.Key.font: Font.boldSystemFont(ofSize: Font.systemFontSize)])
     }
     #endif
     
     #if canImport(Foundation)
     /// Underlined string
-    public var underline: NSAttributedString {
+    var underline: NSAttributedString {
         return NSAttributedString(string: self, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     }
     #endif
     
     #if canImport(Foundation)
     /// Strikethrough string.
-    public var strikethrough: NSAttributedString {
+    var strikethrough: NSAttributedString {
         return NSAttributedString(string: self, attributes: [NSAttributedString.Key.strikethroughStyle: NSNumber(value: NSUnderlineStyle.single.rawValue as Int)])
     }
     #endif
     
     #if os(iOS)
     /// Italic string.
-    public var italic: NSAttributedString {
+    var italic: NSAttributedString {
         return NSMutableAttributedString(string: self, attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
     }
     #endif
@@ -310,7 +310,7 @@ public extension String {
     ///
     /// - Parameter color: text color.
     /// - Returns: a NSAttributedString versions of string colored with given color.
-    public func colored(with color: UIColor) -> NSAttributedString {
+    func colored(with color: UIColor) -> NSAttributedString {
         return NSMutableAttributedString(string: self, attributes: [NSAttributedString.Key.foregroundColor: color])
     }
     #endif
@@ -320,7 +320,7 @@ public extension String {
     ///
     /// - Parameter color: text color.
     /// - Returns: a NSAttributedString versions of string colored with given color.
-    public func colored(with color: NSColor) -> NSAttributedString {
+    func colored(with color: NSColor) -> NSAttributedString {
         return NSMutableAttributedString(string: self, attributes: [.foregroundColor: color])
     }
     #endif
@@ -338,7 +338,7 @@ public extension String {
     ///   - lhs: string to repeat.
     ///   - rhs: number of times to repeat character.
     /// - Returns: new string with given string repeated n times.
-    public static func * (lhs: String, rhs: Int) -> String {
+    static func * (lhs: String, rhs: Int) -> String {
         guard rhs > 0 else { return "" }
         return String(repeating: lhs, count: rhs)
     }
@@ -346,7 +346,7 @@ public extension String {
 
 
 public extension String {
-    public func jsonSerialization() -> Any? {
+    func jsonSerialization() -> Any? {
         guard let data = data(using: .utf8) else { return nil }
         let obj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
         return obj

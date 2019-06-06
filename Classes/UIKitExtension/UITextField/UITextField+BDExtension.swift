@@ -6,13 +6,8 @@
 //  Copyright © 2017年 品驰医疗. All rights reserved.
 //
 
-#if canImport(Foundation)
 import Foundation
-#endif
-
-#if canImport(UIKit)
 import UIKit
-#endif
 
 
 extension UITextField {
@@ -29,7 +24,7 @@ extension UITextField {
         set {
             guard let key = UITextField.BDTextFieldLimitKey else { return }
             objc_setAssociatedObject(self, key, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-              NotificationCenter.default.addObserver(self, selector: #selector(bd_recieveDidChangeNotification(notif:)), name: UITextField.textDidChangeNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(bd_recieveDidChangeNotification(notif:)), name: UITextField.textDidChangeNotification, object: nil)
         }
     }
     

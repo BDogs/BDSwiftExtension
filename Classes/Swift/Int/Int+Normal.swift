@@ -136,14 +136,14 @@ public extension Int {
     /// - Parameters:
     ///   - min: minimum number to start random from.
     ///   - max: maximum number random number end before.
-    public init(randomBetween min: Int, and max: Int) {
+    init(randomBetween min: Int, and max: Int) {
         self = Int.random(between: min, and: max)
     }
     
     /// Create a random integer in a closed interval range.
     ///
     /// - Parameter range: closed interval range.
-    public init(randomInRange range: ClosedRange<Int>) {
+    init(randomInRange range: ClosedRange<Int>) {
         self = Int.random(inRange: range)
     }
     

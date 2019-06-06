@@ -135,6 +135,8 @@ extension UIImage {
             break
         case .scaleToFill, .redraw:
             break
+        @unknown default:
+            break
         }
         
         return contentRect

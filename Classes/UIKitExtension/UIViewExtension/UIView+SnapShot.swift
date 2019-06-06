@@ -11,8 +11,7 @@ import UIKit
 
 extension UIView {
     
-    public func snapshotImage(rect: CGRect) -> UIImage? {
-        
+    public func snapshotImage(rect: CGRect, isOpaque: Bool = false) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, isOpaque, 0)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         layer.render(in: context)
@@ -36,6 +35,8 @@ extension UIView {
         return image
     
     }
+    
+    
     
     
 }

@@ -12,37 +12,37 @@ import Foundation
 public extension FloatingPoint {
     
     /// Absolute value of integer number.
-    public var abs: Self {
+    var abs: Self {
         return Swift.abs(self)
     }
     
     /// Check if integer is positive.
-    public var isPositive: Bool {
+    var isPositive: Bool {
         return self > 0
     }
     
     /// Check if integer is negative.
-    public var isNegative: Bool {
+    var isNegative: Bool {
         return self < 0
     }
     
     /// Ceil of number.
-    public var ceil: Self {
+    var ceil: Self {
         return Foundation.ceil(self)
     }
     
     /// Radian value of degree input.
-    public var degreesToRadians: Self {
+    var degreesToRadians: Self {
         return Self.pi * self / Self(180)
     }
     
     /// Floor of number.
-    public var floor: Self {
+    var floor: Self {
         return Foundation.floor(self)
     }
     
     /// Degree value of radian input.
-    public var radiansToDegrees: Self {
+    var radiansToDegrees: Self {
         return self * Self(180) / Self.pi
     }
     
@@ -57,7 +57,7 @@ public extension FloatingPoint {
     ///   - min: minimum number to start random from.
     ///   - max: maximum number random number end before.
     /// - Returns: random number between two numbers.
-    public static func random(between min: Self, and max: Self) -> Self {
+    static func random(between min: Self, and max: Self) -> Self {
         let aMin = Self.minimum(min, max)
         let aMax = Self.maximum(min, max)
         let delta = aMax - aMin
@@ -68,7 +68,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter range: closed interval range.
     /// - Returns: random number in the given closed range.
-    public static func random(inRange range: ClosedRange<Self>) -> Self {
+    static func random(inRange range: ClosedRange<Self>) -> Self {
         let delta = range.upperBound - range.lowerBound
         return Self(arc4random()) / Self(UInt64(UINT32_MAX)) * delta + range.lowerBound
     }
@@ -83,7 +83,7 @@ public extension FloatingPoint {
     /// - Parameters:
     ///   - min: minimum number to start random from.
     ///   - max: maximum number random number end before.
-    public init(randomBetween min: Self, and max: Self) {
+    init(randomBetween min: Self, and max: Self) {
         let aMin = Self.minimum(min, max)
         let aMax = Self.maximum(min, max)
         let delta = aMax - aMin
@@ -93,7 +93,7 @@ public extension FloatingPoint {
     /// Create a random number in a closed interval range.
     ///
     /// - Parameter range: closed interval range.
-    public init(randomInRange range: ClosedRange<Self>) {
+    init(randomInRange range: ClosedRange<Self>) {
         let delta = range.upperBound - range.lowerBound
         self = Self(arc4random()) / Self(UInt64(UINT32_MAX)) * delta + range.lowerBound
     }

@@ -9,17 +9,18 @@
 import Foundation
 import UIKit
 
-public let BD_IS_IPHONEX = UIScreen.main.bounds.height == 812
-public let BD_NAVIGATIONBAR_HEIGHT: CGFloat = UIScreen.main.bounds.height == 812 ? 88 : 64
-public let BD_TabBAR_HEIGHT: CGFloat = UIScreen.main.bounds.height == 812 ? 83 : 49
-public let BD_SAFE_BOTTOM: CGFloat = UIScreen.main.bounds.height == 812 ? 34 : 0
+let BD_IS_IPHONEX = UIScreen.main.bounds.height == 812
+let BD_NAVIGATIONBAR_HEIGHT: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 88 : 64
+let BD_TabBAR_HEIGHT: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 83 : 49
+let BD_SAFE_BOTTOM: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 34 : 0
+let BD_SAFE_TOP: CGFloat = (UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896) ? 44 : 20
 
-public let BD_SCREEN_WIDTH = UIScreen.main.bounds.width
-public let BD_SCREEN_HEIGHT = UIScreen.main.bounds.height
-public let BD_SCREEN_HEIGHT_WITHOUT_STATUSBAR = BD_SCREEN_HEIGHT-UIApplication.shared.statusBarFrame.height
-public let BD_SCREEN_HEIGHT_WITHOUT_NAVIGATIONBAR = BD_SCREEN_HEIGHT-BD_NAVIGATIONBAR_HEIGHT
+let BD_SCREEN_WIDTH = UIScreen.main.bounds.width
+let BD_SCREEN_HEIGHT = UIScreen.main.bounds.height
+let BD_SCREEN_HEIGHT_WITHOUT_STATUSBAR = BD_SCREEN_HEIGHT-UIApplication.shared.statusBarFrame.height
+let BD_SCREEN_HEIGHT_WITHOUT_NAVIGATIONBAR = BD_SCREEN_HEIGHT-BD_NAVIGATIONBAR_HEIGHT
 
-public let BD_SYSTEM_VERSION = UIDevice.current.systemVersion
+let BD_SYSTEM_VERSION = UIDevice.current.systemVersion
 fileprivate var kTopSuperView = "kTopSuperView"
 
 
@@ -27,7 +28,7 @@ fileprivate var kTopSuperView = "kTopSuperView"
 ///
 /// - Parameter v: target version
 /// - Returns: 是否大于
-public func BD_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: Double) -> Bool {
+func BD_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: Double) -> Bool {
     return rint(Double(BD_SYSTEM_VERSION)!) > rint(v)
 }
 
@@ -39,7 +40,7 @@ public extension UIView {
     
     
     // MARK: - coordinate
-    public var height: CGFloat {
+    var height: CGFloat {
         get {
             return self.frame.height
         }
@@ -50,7 +51,7 @@ public extension UIView {
         }
     }
     
-    public var width: CGFloat {
+    var width: CGFloat {
         get {
             return self.frame.width
         }
@@ -61,7 +62,7 @@ public extension UIView {
         }
     }
     
-    public var minX : CGFloat {
+    var minX : CGFloat {
         get {
             return self.frame.minX
         }
@@ -72,7 +73,7 @@ public extension UIView {
         }
     }
     
-    public var minY : CGFloat {
+    var minY : CGFloat {
         get {
             return self.frame.minY
         }
@@ -83,7 +84,7 @@ public extension UIView {
         }
     }
     
-    public var maxX: CGFloat {
+    var maxX: CGFloat {
         return self.frame.maxX
     }
     
@@ -91,7 +92,7 @@ public extension UIView {
         return self.frame.maxY
     }
     
-    public var size: CGSize {
+    var size: CGSize {
         get {
             return self.frame.size
         }
@@ -102,7 +103,7 @@ public extension UIView {
         }
     }
     
-    public var origin: CGPoint {
+    var origin: CGPoint {
         get {
             return self.frame.origin
         }
@@ -113,7 +114,7 @@ public extension UIView {
         }
     }
     
-    public var midX: CGFloat {
+    var midX: CGFloat {
         get {
             return self.frame.midX
         }
@@ -124,7 +125,7 @@ public extension UIView {
         }
     }
     
-    public var midY: CGFloat {
+    var midY: CGFloat {
         get {
             return self.frame.midY
         }
@@ -136,7 +137,7 @@ public extension UIView {
     }
     
     // MARK: - equal to
-    public func topSuperView() -> UIView {
+    func topSuperView() -> UIView {
         let ret = objc_getAssociatedObject(self, &kTopSuperView)
         print(ret ?? "nil")
         if ret != nil {
@@ -163,29 +164,29 @@ public extension UIView {
         return superView!
     }
     
-    public func heightEqualTo(view: UIView) -> Void {
+    func heightEqualTo(view: UIView) -> Void {
         self.height = view.height
     }
     
-    public func widthEqualTo(view: UIView) -> Void {
+    func widthEqualTo(view: UIView) -> Void {
         self.width = view.width
     }
     
-    public func midXEqualTo(view: UIView) -> Void {
+    func midXEqualTo(view: UIView) -> Void {
         let superView = bd_superView(view: view)
         let viewCenterPoint = superView.convert(view.center, to: self.topSuperView())
         let centerPoint = self.topSuperView().convert(viewCenterPoint, to: self.superview)
         self.midX = centerPoint.x
     }
     
-    public func midYEqualTo(view: UIView) -> Void {
+    func midYEqualTo(view: UIView) -> Void {
         let superView = bd_superView(view: view)
         let viewCenterPoint = superView.convert(view.center, to: self.topSuperView())
         let centerPoint = self.topSuperView().convert(viewCenterPoint, to: self.superview)
         self.midY = centerPoint.y
     }
     
-    public func centerEqualTo(view: UIView) -> Void {
+    func centerEqualTo(view: UIView) -> Void {
         let superView = bd_superView(view: view)
         let viewCenterPoint = superView.convert(view.center, to: self.topSuperView())
         let centerPoint = self.topSuperView().convert(viewCenterPoint, to: self.superview)
@@ -194,28 +195,28 @@ public extension UIView {
     }
     
     // MARK: - top, bottom, leading, trailing -- Version 1.0.0
-    public func bottomTo(view: UIView, space: CGFloat) -> Void {
+    func bottomTo(view: UIView, space: CGFloat) -> Void {
         let superView = bd_superView(view: view)
         let viewOrigin = superView.convert(view.origin, to: topSuperView())
         let newOrigin = topSuperView().convert(viewOrigin, to: self.superview)
         self.minY = newOrigin.y - space - self.height
     }
     
-    public func topTo(view: UIView, space: CGFloat) -> Void {
+    func topTo(view: UIView, space: CGFloat) -> Void {
         let superView = bd_superView(view: view)
         let viewOrigin = superView.convert(view.origin, to: topSuperView())
         let newOrigin = topSuperView().convert(viewOrigin, to: self.superview)
         self.minY = newOrigin.y + view.height + space
     }
     
-    public func trailingTo(view: UIView, space: CGFloat) -> Void {
+    func trailingTo(view: UIView, space: CGFloat) -> Void {
         let superView = bd_superView(view: view)
         let viewOrigin = superView.convert(view.origin, to: topSuperView())
         let newOrigin = topSuperView().convert(viewOrigin, to: self.superview)
         self.minX = newOrigin.x - space - self.width
     }
     
-    public func leadingTo(view: UIView, space: CGFloat) -> Void {
+    func leadingTo(view: UIView, space: CGFloat) -> Void {
         let superView = bd_superView(view: view)
         let viewOrigin = superView.convert(view.origin, to: topSuperView())
         let newOrigin = topSuperView().convert(viewOrigin, to: self.superview)
@@ -291,25 +292,26 @@ public extension UIView {
 //        self.layer.mask = maskLayer
     }
 
-//    @IBInspectable
-//    public var cornerRadius: CGFloat? {
-//        get {
-//          return CGFloat(0)
-//        }
-//        
-//        set {
-//            guard let radius = newValue else {
-//                return
-//            }
-//            bd_setCorner(radius: radius)
-//        }
-//    }
+    @IBInspectable
+    
+    var bd_cornerRadius: CGFloat {
+        get {
+          return 0
+        }
+        
+        set {
+            guard newValue != 0 else {
+                return
+            }
+            bd_setCorner(radius: newValue)
+        }
+    }
 
     @IBInspectable
     
     /// 设置View的边框颜色
     /// SwifterSwift: Border color of view; also inspectable from Storyboard.
-    public var borderColor: UIColor? {
+    var borderColor: UIColor? {
         get {
             guard let color = layer.borderColor else {
                 return nil
@@ -328,7 +330,7 @@ public extension UIView {
     @IBInspectable
     /// 设置变的宽度
     /// SwifterSwift: Border width of view; also inspectable from Storyboard.
-    public var borderWidth: CGFloat {
+    var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
