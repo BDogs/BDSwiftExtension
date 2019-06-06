@@ -30,7 +30,8 @@ public class BDFileUtilities: NSObject {
     /// - Returns: 是否保存成功
     public class func savePNGToDocumentDirectory(name: String, image: UIImage) -> Bool {
         let filePath = BD_DocumentDirectory_Path.appendingFormat("/%@.png", name)
-        return saveDataToPath(filePath: filePath, data: image.pngData()!)
+        guard let data = image.pngData() else { return false }
+        return saveDataToPath(filePath: filePath, data: data)
     }
     
     public static func prepareForSave(path: String) -> Void {
