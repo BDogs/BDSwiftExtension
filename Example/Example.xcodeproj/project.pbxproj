@@ -25,6 +25,8 @@
 		F93374D1213D161D002A8CAE /* String+Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93374D0213D161D002A8CAE /* String+Coding.swift */; };
 		F93374D4213E7660002A8CAE /* Float+Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93374D3213E7660002A8CAE /* Float+Normal.swift */; };
 		F9337512213FBA7A002A8CAE /* DateExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9337511213FBA7A002A8CAE /* DateExtensionTest.swift */; };
+		F95C206A22B9E80F0033C355 /* NSObject+GetCurrentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95C206922B9E80F0033C355 /* NSObject+GetCurrentVC.swift */; };
+		F9715B1F22B724010014A658 /* Base64Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9715B1E22B724010014A658 /* Base64Image.swift */; };
 		F9AD7AE120BE815A00AD302F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7AE020BE815A00AD302F /* AppDelegate.swift */; };
 		F9AD7AE320BE815A00AD302F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7AE220BE815A00AD302F /* ViewController.swift */; };
 		F9AD7AE620BE815A00AD302F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9AD7AE420BE815A00AD302F /* Main.storyboard */; };
@@ -82,6 +84,8 @@
 		F93374D0213D161D002A8CAE /* String+Coding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Coding.swift"; sourceTree = "<group>"; };
 		F93374D3213E7660002A8CAE /* Float+Normal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Normal.swift"; sourceTree = "<group>"; };
 		F9337511213FBA7A002A8CAE /* DateExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTest.swift; sourceTree = "<group>"; };
+		F95C206922B9E80F0033C355 /* NSObject+GetCurrentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+GetCurrentVC.swift"; sourceTree = "<group>"; };
+		F9715B1E22B724010014A658 /* Base64Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64Image.swift; sourceTree = "<group>"; };
 		F9AD7ADD20BE815A00AD302F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9AD7AE020BE815A00AD302F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9AD7AE220BE815A00AD302F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 		F910401B22A8AE8B009655C4 /* UIKitExtension */ = {
 			isa = PBXGroup;
 			children = (
+				F9715B1D22B723E30014A658 /* UIImage */,
 				F910401C22A8AE8B009655C4 /* UINib */,
 				F910401E22A8AE8B009655C4 /* UILabel */,
 				F910402022A8AE8B009655C4 /* UIButton */,
@@ -269,6 +274,22 @@
 			path = Float;
 			sourceTree = "<group>";
 		};
+		F95C206822B9E7C90033C355 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				F95C206922B9E80F0033C355 /* NSObject+GetCurrentVC.swift */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		F9715B1D22B723E30014A658 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				F9715B1E22B724010014A658 /* Base64Image.swift */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
 		F9AD7AD420BE815A00AD302F = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +361,7 @@
 		F9AD7B1820BE9E6B00AD302F /* FoundationExtension */ = {
 			isa = PBXGroup;
 			children = (
+				F95C206822B9E7C90033C355 /* NSObject */,
 				F9AD7B1920BE9E6B00AD302F /* FileManagerExtension */,
 				F9AD7B1B20BE9E6B00AD302F /* DigitalTranslator */,
 				F9AD7B1D20BE9E6B00AD302F /* DateExtension */,
@@ -546,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9715B1F22B724010014A658 /* Base64Image.swift in Sources */,
 				F9AD7AE320BE815A00AD302F /* ViewController.swift in Sources */,
 				F9AD7B4420BE9E6B00AD302F /* BDFileUtilities.swift in Sources */,
 				F9AD7B4620BE9E6B00AD302F /* Date+BDExtension.swift in Sources */,
@@ -566,6 +589,7 @@
 				F9AD7B5F20BF9A7400AD302F /* Int+Normal.swift in Sources */,
 				F910404522A8AE8B009655C4 /* UIImage+Effect.swift in Sources */,
 				F910403E22A8AE8B009655C4 /* CGSize+BDExtension.swift in Sources */,
+				F95C206A22B9E80F0033C355 /* NSObject+GetCurrentVC.swift in Sources */,
 				F910404622A8AE8B009655C4 /* UITextField+BDExtension.swift in Sources */,
 				F93374D4213E7660002A8CAE /* Float+Normal.swift in Sources */,
 				F910403F22A8AE8B009655C4 /* UIControll+MutiClick.swift in Sources */,
