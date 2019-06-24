@@ -49,7 +49,9 @@ public extension Date {
         return formatter.string(from: self)
     }
     
-    
+    func string(formatter: DateFormatter) -> String {
+        return formatter.string(from: self)
+    }
     
     static func dateWithString(string: String?, format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
         guard let dateString = string else { return nil }
